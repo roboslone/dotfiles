@@ -115,7 +115,7 @@
     setopt hist_reduce_blanks
 
 # Locale
-    export LC_ALL='ru_RU.UTF-8'
+    export LC_ALL='en_US.UTF-8'
 
 # Del key fix
     bindkey    "^[[3~"          delete-char

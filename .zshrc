@@ -173,10 +173,6 @@
         sudo ip6tables -D INPUT -p tcp --destination-port "$*" -j DROP
     }
 
-    pegb() {
-        source /Users/roboslone/Documents/Experiments/pyenv-greenbox/bin/activate
-    }
-
 # Additional config
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext

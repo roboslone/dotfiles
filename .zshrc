@@ -145,7 +145,7 @@
 # FZF
     if [[ -e ~/.fzf.zsh ]]; then
         source ~/.fzf.zsh
-        export FZF_DEFAULT_OPTS='-i --prompt="" --no-mouse -x -e +c'
+        export FZF_DEFAULT_OPTS='-i --multi --exact --prompt="" --no-mouse --margin=3 --color="fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,info:-1,prompt:-1,pointer:-1,marker:32,spinner:-1,header:-1"'
     fi
 
 # Functions

@@ -163,6 +163,10 @@
         fi
     }
 
+    function ve() {
+        source "$*"/bin/activate
+    }
+
     function ban() {
         sudo iptables -A INPUT -p tcp --destination-port "$*" -j DROP
         sudo ip6tables -A INPUT -p tcp --destination-port "$*" -j DROP

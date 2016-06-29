@@ -164,7 +164,21 @@
     }
 
     function ve() {
-        source "$*"/bin/activate
+        unset _found_envs
+
+        _found_envs=$(find . -type f -name 'activate')
+
+        [ -z ${_found_envs} ] && print "${red}venv not found${_0}" && return 1
+
+        for f in ${_found_envs}; do
+            source "${f}"
+        done
+
+        print "using ${green}$(dirname $(dirname ${f}))${_0}"
+
+        unset f
+
+        [ -d 'src' ] && cd src
     }
 
     function ban() {

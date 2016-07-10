@@ -5,6 +5,7 @@ syntax on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -17,7 +18,7 @@ nnoremap <CR> :noh<CR><CR>
 
 " Airline setup
 set laststatus=2
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'hybrid'
 " let g:airline_powerline_fonts = 1
 let g:airline_detect_paste = 1
 let g:airline_left_sep = ''
@@ -46,12 +47,13 @@ let g:ycm_key_list_select_completion = ['<TAB>', ]
 set rtp+=/usr/local/Cellar/fzf/0.9.7
 
 " Color scheme
-set t_Co=256
+" set t_Co=256
+" set background=dark
+" colorscheme hybrid_material
 set background=dark
-" colorscheme Tomorrow-Night
-colorscheme hybrid_material
-" highlight Normal ctermbg=NONE
-" highlight nonText ctermbg=NONE
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
 
 " Cursor line
 set cursorline

@@ -97,7 +97,6 @@
         alias repo_up='svn info &> /dev/null && svn up || git pull'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
-        alias fve='source $(find .. -type f -name "activate" | fzf) && [ -d "src" ] && cd src'
 
     ## OS X
         alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
@@ -166,21 +165,25 @@
     }
 
     function ve() {
-        unset _found_envs
+        unset _env
+        unset _fzf_bin
+        deactivate &> /dev/null
 
-        _found_envs=$(find . -type f -name 'activate')
+        _fzf_bin=$(which fzf)
+        if [ -e ${_fzf_bin} ]; then
+            _env=$(find . -type f -name "activate" | ${_fzf_bin})
+        else
+            _env=$(find . -type f -name "activate" | head -1)
+            print "${red}fzf is not installed, using autoselect${_0}"
+        fi
 
-        [ -z ${_found_envs} ] && print "${red}venv not found${_0}" && return 1
+        print "Selected virtualenv: ${green}${_env}${_0}"
 
-        for f in ${_found_envs}; do
-            source "${f}"
-        done
-
-        print "using ${green}$(dirname $(dirname ${f}))${_0}"
-
-        unset f
-
-        [ -d 'src' ] && cd src
+        if [ -n ${_env} ]; then
+            source ${_env}
+            cd $(dirname ${_env})/../../
+            [ -d 'src' ] && cd src
+        fi
     }
 
     function ban() {

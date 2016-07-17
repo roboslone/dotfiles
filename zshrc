@@ -342,7 +342,7 @@
             for _dir in "$@"; do
                 print -n "==> updating '${_dir}' "
                 _prev_dir=$(pwd)
-                cd ${_dir} && repo_up &> /dev/null && print "${green}OK${_0}" || print "${red}FAIL${_0}"
+                cd ${_dir} &> /dev/null && repo_up &> /dev/null && print "${green}OK${_0}" || print "${red}FAIL${_0}"
                 cd ${_prev_dir}
             done
         fi

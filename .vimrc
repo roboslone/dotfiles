@@ -44,15 +44,12 @@ let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<TAB>', ]
 
 " FZF setup
-set rtp+=/usr/local/Cellar/fzf/0.9.7
+set rtp+=/usr/local/Cellar/fzf/0.13.3
 
 " Color scheme
-" set t_Co=256
-" set background=dark
-" colorscheme hybrid_material
+set t_Co=256
 set background=dark
 let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 
 " Cursor line

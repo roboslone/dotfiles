@@ -177,9 +177,10 @@
             print "${red}fzf is not installed, using autoselect${_0}"
         fi
 
-        print "Selected virtualenv: ${green}${_env}${_0}"
-
-        if [ -n ${_env} ]; then
+        if [ -z ${_env} ]; then
+            print "${yellow}no virtualenv selected${_0}"
+        else
+            print "selected ${green}${_env}${_0}"
             source ${_env}
             cd $(dirname ${_env})/../../
             [ -d 'src' ] && cd src

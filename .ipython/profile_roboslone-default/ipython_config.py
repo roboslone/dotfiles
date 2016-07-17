@@ -104,7 +104,7 @@ c = get_config()
 # c.TerminalIPythonApp.file_to_run = ''
 
 # Start IPython quickly by skipping the loading of config files.
-# c.TerminalIPythonApp.quick = False
+c.TerminalIPythonApp.quick = True
 
 # Should variables loaded at startup (by startup files, exec_lines, etc.) be
 # hidden from tools like %who?

@@ -94,6 +94,8 @@
         alias ll='ls -la'
         alias l1='ls -1'
         alias grep='grep --color=auto'
+        alias Lf='less +F'
+        alias GR='grep -R'
         alias repo_up='svn info &> /dev/null && svn up || git pull'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
@@ -201,4 +203,3 @@
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext
     fi
-

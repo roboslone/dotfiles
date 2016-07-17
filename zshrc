@@ -105,7 +105,7 @@
         alias grep='grep --color=auto'
         alias Lf='less +F'
         alias GR='grep -R'
-        alias repo_up='svn info &> /dev/null && svn up || git pull -q'
+        alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
 
@@ -340,11 +340,10 @@
             repo_up_with_log
         else
             for _dir in "$@"; do
-                print "${blue}Updating '${_dir}'${_0}"
+                print -n "==> updating '${_dir}' "
                 _prev_dir=$(pwd)
-                cd ${_dir} && repo_up || print "${red}Failed to update ${_dir}${_0}"
+                cd ${_dir} && repo_up &> /dev/null && print "${green}OK${_0}" || print "${red}FAIL${_0}"
                 cd ${_prev_dir}
-                print
             done
         fi
     }

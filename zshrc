@@ -775,14 +775,25 @@
         bscd ${_conf} > /tmp/${_conf}.dump
     }
 
-    function icd() {
-        unset _conf
+    function ils() {
+        _OLD_IFS=$IFS
+        IFS=$'\n'
+        for i in $(bsconfig list | grep bsconfig | grep "$*" | awk '{print$1}'); do
+            print ${i}
+        done
+        for i in $(ih list -s "$*"); do
+            print ${i}
+        done
+        IFS=${_OLD_IFS}
+    }
 
-        _conf="$*"
+    function icd() {
+        _OLD_IFS=$IFS
+        IFS=$'\n'
 
         _fzf_bin=$(which fzf)
         if [ -e ${_fzf_bin} ]; then
-            _instance=$(ih list -s timeline | fzf)
+            _instance=$(ils "$*" | fzf)
         else
             print "${red}fzf is not installed${_0}"
             return 1
@@ -791,10 +802,10 @@
         if [ -z ${_instance} ]; then
             print "${yellow}no instance selected${_0}"
         else
-            print "${green}${_env}${_0}"
-            _instance_path=$(echo ${_instance} | awk '{print$2}')
-            cd /db/iss3/instances/${_instance_path}
+            $(print "${_instance}" | grep bsconfig) && cd ${_instance} || cd /db/iss3/instances/$(print ${_instance} | awk '{print$2}')
         fi
+
+        IFS=${_OLD_IFS}
     }
 
 # Additional config

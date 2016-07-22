@@ -775,6 +775,28 @@
         bscd ${_conf} > /tmp/${_conf}.dump
     }
 
+    function icd() {
+        unset _conf
+
+        _conf="$*"
+
+        _fzf_bin=$(which fzf)
+        if [ -e ${_fzf_bin} ]; then
+            _instance=$(ih list -s timeline | fzf)
+        else
+            print "${red}fzf is not installed${_0}"
+            return 1
+        fi
+
+        if [ -z ${_instance} ]; then
+            print "${yellow}no instance selected${_0}"
+        else
+            print "${green}${_env}${_0}"
+            _instance_path=$(echo ${_instance} | awk '{print$2}')
+            cd ${_instance_path}
+        fi
+    }
+
 # Additional config
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext

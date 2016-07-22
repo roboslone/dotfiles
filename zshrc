@@ -793,7 +793,7 @@
         else
             print "${green}${_env}${_0}"
             _instance_path=$(echo ${_instance} | awk '{print$2}')
-            cd ${_instance_path}
+            cd /db/iss3/instances/${_instance_path}
         fi
     }
 

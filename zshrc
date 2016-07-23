@@ -802,6 +802,7 @@
         if [ -z ${_instance} ]; then
             print "${yellow}no instance selected${_0}"
         else
+            print "${_instance}"
             $(print "${_instance}" | grep bsconfig) && cd ${_instance} || cd /db/iss3/instances/$(print ${_instance} | awk '{print$2}')
         fi
 

@@ -778,7 +778,7 @@
     function ils() {
         _OLD_IFS=$IFS
         IFS=$'\n'
-        for i in $(bsconfig list | grep bsconfig | grep "$*" | awk '{print$1}'); do
+        for i in $(bsconfig list 2&>/dev/null | grep bsconfig | grep "$*" | awk '{print$1}'); do
             print ${i}
         done
         for i in $(ih list -s "$*"); do

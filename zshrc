@@ -90,8 +90,8 @@
     ## global
         alias -g NN='&>/dev/null'
         alias -g V='|vim -'
-        alias -g G='|grep'
-        alias -g Gv='|grep -v'
+        alias -g G='|grep -i'
+        alias -g Gv='|grep -iv'
         alias -g L='|less'
         alias -g T='|tail'
         alias -g H='|head'
@@ -104,7 +104,7 @@
         alias l1='ls -1'
         alias grep='grep --color=auto'
         alias Lf='less +F'
-        alias GR='grep -R'
+        alias GR='grep -RIi'
         alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
@@ -127,7 +127,7 @@
             alias bssf='sudo bsconfig stop --force'
             alias bss='sudo bsconfig start'
             alias bscd='bsconfig configuration_dump'
-            alias cmslookup='bsconfig global_listconfigurations | grep'
+            alias cmslookup='bsconfig global_listconfigurations | grep -i'
         fi
 
     ## skynet
@@ -331,7 +331,7 @@
         if [[ -z "$*" ]]; then
             bsconfig list
         else
-            bsconfig list | grep "$*"
+            bsconfig list | grep -i "$*"
         fi
     }
 
@@ -778,7 +778,7 @@
     function ils() {
         _OLD_IFS=$IFS
         IFS=$'\n'
-        for i in $(bsconfig list 2&>/dev/null | grep bsconfig | grep "$*" | awk '{print$1}'); do
+        for i in $(bsconfig list 2&>/dev/null | grep bsconfig | grep -i "$*" | awk '{print$1}'); do
             print ${i}
         done
         for i in $(ih list -s "$*"); do

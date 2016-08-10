@@ -99,7 +99,7 @@
 
     ## common
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
-        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.24/bin/gls --color=auto -F --group-directories-first'
+        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.25/bin/gls --color=auto -F --group-directories-first'
         alias ll='ls -la'
         alias l1='ls -1'
         alias grep='grep --color=auto'
@@ -107,6 +107,7 @@
         alias GR='grep -RIi'
         alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
+        alias ssh='ssh -o "logLevel=QUIET"'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
 
     ## OS X only
@@ -168,6 +169,11 @@
 # Syntax highlighting
     if [[ -e ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
         source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    fi
+
+# Autosuggestions
+    if [[ -e ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+        source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
     fi
 
 # Working directory

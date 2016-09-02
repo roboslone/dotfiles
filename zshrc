@@ -109,7 +109,7 @@
         alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ssh='ssh -o "logLevel=QUIET"'
-        alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(profile=\"roboslone-default\", pprint=True)'"
+        alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
@@ -1273,7 +1273,7 @@
             print "${yellow}confoguration not found${_0}"
         else
             print "${green}${_latest_conf}${_0}"
-            sky run -Up --cqudp "grep $* /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf}
+            sky run -Up --cqudp "grep -- $* /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
         fi
     }
 

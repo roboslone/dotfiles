@@ -1268,7 +1268,19 @@
     function grep_ydl_prestable_logs() {
         unset _latest_conf
 
-        _latest_conf=$(cmslookup ydl_prestable | tail -1 | awk '{print$1}')
+        _latest_conf=$(cmslookup 'ydl_prestable' | tail -1 | awk '{print$1}')
+        if [ -z ${_latest_conf} ]; then
+            print "${yellow}confoguration not found${_0}"
+        else
+            print "${green}${_latest_conf}${_0}"
+            sky run -Up --cqudp "grep -- $* /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
+        fi
+    }
+
+    function grep_ydl_logs() {
+        unset _latest_conf
+
+        _latest_conf=$(cmslookup 'ydl-' | tail -1 | awk '{print$1}')
         if [ -z ${_latest_conf} ]; then
             print "${yellow}confoguration not found${_0}"
         else

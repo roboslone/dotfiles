@@ -1273,7 +1273,7 @@
             print "${yellow}confoguration not found${_0}"
         else
             print "${green}${_latest_conf}${_0}"
-            sky run -Up --cqudp "grep -- $* /usr/local/www/logs/${_latest_conf}-1985-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
+            sky run -Up --cqudp "grep -i -- '$*' /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
         fi
     }
 
@@ -1285,7 +1285,7 @@
             print "${yellow}confoguration not found${_0}"
         else
             print "${green}${_latest_conf}${_0}"
-            sky run -Up --cqudp "grep -- $* /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
+            sky run -Up --cqudp "grep -i -- '$*' /usr/local/www/logs/${_latest_conf}-1985-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
         fi
     }
 

@@ -1,2 +1,34 @@
-.container { width:90% !important; }
-div.output_stderr {background: #feffe1;}
+body {
+    background-color: #eeeeee;
+}
+
+#menubar .navbar {
+    border-top: 1px;
+    border-radius: 0px 0px 4px 4px;
+    margin-bottom: 0px;
+    border-color: #cfcfcf;
+}
+
+.notebook_app .container {
+    width:95% !important;
+    background-color: #eeeeee;
+}
+
+.notebook_app > #header {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #eeeeee;
+}
+
+div.output_stderr {
+    background: #feffe1;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+    margin-top: 3px;
+}
+
+div.cell.selected {
+    border-color: #42A5F5;
+    border-radius: 3px;
+}
+

@@ -20,11 +20,20 @@ body {
     background-color: #eeeeee;
 }
 
+div.output_text {
+    background-color: #ffffff;
+    border-style: solid;
+    border-color: #cfcfcf;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 0 0 3px 3px; 
+}
+
 div.output_stderr {
     background: #feffe1;
-    border: 1px solid #cfcfcf;
-    border-radius: 3px;
-    margin-top: 3px;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 0 0 3px 3px;
+    border-color: #cfcfcf;
+    border-style: solid;
 }
 
 div.cell.selected {

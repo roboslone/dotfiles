@@ -24,6 +24,10 @@ body {
     min-width: 10ex;
 }
 
+div.output_subarea {
+    max-width: 100%;
+}
+
 div.output_text {
     background-color: #ffffff;
     border-style: solid;

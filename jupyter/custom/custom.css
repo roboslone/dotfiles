@@ -30,18 +30,24 @@ div.output_subarea {
 
 div.output_text {
     background-color: #ffffff;
-    border-style: solid;
     border-color: #cfcfcf;
-    border-width: 0px 1px 1px 1px;
     border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 2px;
 }
 
 div.output_stderr {
     background: #feffe1;
-    border-width: 0px 1px 1px 1px;
-    border-radius: 0;
     border-color: #cfcfcf;
+    border-radius: 0;
     border-style: solid;
+    border-width: 1px;
+    margin-top: 2px;
+}
+
+div.cell {
+    margin: 15px 0px 0px 0px;
 }
 
 div.cell.selected {

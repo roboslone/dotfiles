@@ -4,13 +4,13 @@ body {
 
 #menubar .navbar {
     border-top: 1px;
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 0;
     margin-bottom: 0px;
     border-color: #cfcfcf;
 }
 
 .notebook_app .container {
-    width:95% !important;
+    width:100% !important;
     background-color: #eeeeee;
 }
 
@@ -20,24 +20,32 @@ body {
     background-color: #eeeeee;
 }
 
+.prompt {
+    min-width: 10ex;
+}
+
 div.output_text {
     background-color: #ffffff;
     border-style: solid;
     border-color: #cfcfcf;
     border-width: 0px 1px 1px 1px;
-    border-radius: 0 0 3px 3px; 
+    border-radius: 0;
 }
 
 div.output_stderr {
     background: #feffe1;
     border-width: 0px 1px 1px 1px;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0;
     border-color: #cfcfcf;
     border-style: solid;
 }
 
 div.cell.selected {
     border-color: #42A5F5;
-    border-radius: 3px;
+    border-radius: 0;
+}
+
+div.input_area {
+    border-radius: 0;
 }
 

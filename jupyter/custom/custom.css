@@ -50,7 +50,7 @@ div.output_prompt {
 }
 
 div.output_text {
-    background-color: #ebf6ff;
+    background-color: #f7f7f7;
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
@@ -59,7 +59,7 @@ div.output_text {
 }
 
 div.output_stderr {
-    background: #feffe1;
+    background: #f3ffd6;
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
@@ -114,4 +114,12 @@ div.input_area {
 
 .end_space {
     background-color: #eee;
+}
+
+.widget-hbox .widget-label {
+    max-width: 50ex;
+}
+
+.widget-hprogress {
+    width: 50%;
 }

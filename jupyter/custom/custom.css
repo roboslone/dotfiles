@@ -1,5 +1,5 @@
 body {
-    padding-top: 30px;
+    padding-top: 31px;
     background-color: #eeeeee;
 }
 
@@ -55,42 +55,44 @@ div.output_text {
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px 0px 1px 0px;
     margin-top: -1px;
 }
 
 div.output_stderr {
-    background: #f3ffd6;
+    background: rgb(221, 231, 239);
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px 0px 1px 0px;
     margin-top: -1px;
 }
 
 div.cell {
-    margin: 0px 0px 15px 0px;
+    background: none;
     border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 3px 0px 3px 0px;
 }
 
 div.cell.selected {
-    border: 0;
-    border-radius: 0;
     background: none;
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 5px;
+    padding-left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .edit_mode div.cell.selected {
-    border: 0;
-    border-radius: 0;
     background: none;
-    background-color: rgba(160, 208, 249, 0.4);
-    padding: 5px;
+    padding-left: 0;
+    background-color: #42A5F5;
 }
 
 div.input_area {
     border-radius: 0;
+    border-color: #cfcfcf;
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
 }
 
 .typeahead-button button, .typeahead-filter button {

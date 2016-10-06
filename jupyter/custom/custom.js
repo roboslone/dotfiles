@@ -1,5 +1,6 @@
 $([IPython.events]).on("app_initialized.NotebookApp", function () {
     $('div#header-container').hide();
     $('div#maintoolbar').hide();
-    $('div#notebook-container').css({boxShadow: 'none', backgroundColor: '#eeeeee'})
+    $('div#notebook-container').css({boxShadow: 'none', backgroundColor: '#eeeeee'});
+    $('#menus').addClass('navbar-fixed-top');
 });

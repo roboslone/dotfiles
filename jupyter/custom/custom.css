@@ -1,5 +1,5 @@
 body {
-    margin-top: -1px;
+    margin-top: -3px;
     background-color: #eeeeee;
 }
 
@@ -19,7 +19,7 @@ div#notebook {
 #menubar .navbar {
     border-top: 1px;
     border-radius: 0;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     border-color: #cfcfcf;
 }
 
@@ -45,10 +45,12 @@ div.output_subarea {
 
 div.input_prompt {
     color: #555;
+    border-top: 7px solid transparent;
 }
 
 div.output_prompt {
     color: #3c763d;
+    border-top: 7px solid transparent;
 }
 
 div.output_text {
@@ -56,33 +58,40 @@ div.output_text {
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
-    border-width: 1px 0px 1px 1px;
+    border-width: 1px 0 1px 1px;
     margin-top: -1px;
     padding: 10px;
 }
 
 div.output_stderr {
-    background: rgb(221, 231, 239);
+    background-color: rgb(228, 236, 243);
     border-color: #cfcfcf;
     border-radius: 0;
     border-style: solid;
-    border-width: 1px 0px 1px 1px;
+    border-width: 1px 0 1px 1px;
     margin-top: -1px;
     padding: 10px;
 }
 
-div.cell {
-    background: none;
-    border-width: 2px 0px 2px 0px;
+div.code_cell {
+    border-width: 2px 0 2px 0;
     border-radius: 0;
+    margin: 0 0 10px 0;
+}
+
+div.text_cell {
+    border-width: 2px 0 2px 0;
+    margin: 0 0 10px 0;
+}
+
+div.cell {
     padding: 5px 0 5px 0;
-    margin: 0px 0 10px 0;
 }
 
 div.cell.selected {
     background: none;
     padding-left: 0;
-    border-color: #1d75b3;;
+    border-color: #ccc;
 }
 
 .edit_mode div.cell.selected {
@@ -95,7 +104,7 @@ div.input_area {
     border-radius: 0;
     border-color: #cfcfcf;
     border-style: solid;
-    border-width: 1px 0px 1px 1px;
+    border-width: 1px 0 1px 1px;
 }
 
 .typeahead-button button, .typeahead-filter button {
@@ -111,7 +120,17 @@ div.input_area {
 }
 
 .modal-content {
+    border: 0;
     border-radius: 0;
+}
+
+ul.typeahead-list {
+    border: 0;
+    max-height: none;
+}
+
+.typeahead-field input, .typeahead-select {
+    border: 0;
 }
 
 .typeahead-dropdown, .typeahead-list {
@@ -138,4 +157,15 @@ div.input_area {
 
 .widget-area {
     margin-left: 13px;
+}
+
+.rendered_html pre, .rendered_html code {
+    border: 1px solid #cfcfcf;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.rendered_html code {
+    border: 0;
 }

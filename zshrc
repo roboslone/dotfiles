@@ -26,7 +26,7 @@
         _cyan='\033[46m'
         _grey='\033[47m'
 
-# Platform specific variables.
+# Platform specific variables
     unset PLATFORM_LINUX
     unset PLATFORM_DARWIN
     [[ $(uname) == 'Darwin' ]] && export PLATFORM_DARWIN=1 && export PLATFORM_LINUX=
@@ -783,6 +783,13 @@
     fi
 
 # Functions
+    function disable_airdrop() {
+        ifconfig awdl0 &> /dev/null || (print 'AirDrop interface (awdl0) does not exist' && return 1)
+        ifconfig awdl0 | grep status | grep inactive &> /dev/null && return 0
+        sudo ifconfig awdl0 down && print 'AirDrop interface disabled' && return 0
+        print 'failed to disable AirDrop interface' && return 2
+    }
+
     function bsl() {
         if [[ -z "$*" ]]; then
             bsconfig list
@@ -1293,3 +1300,6 @@
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext
     fi
+
+# Disable AirPort interface (for PyCharm to be able to connect to IPv6-only hosts)
+    [[ -n $PLATFORM_DARWIN ]] && disable_airdrop

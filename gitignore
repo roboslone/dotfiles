@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# IDEA
+.idea/
+
+# Node
+npm-debug.log
+
+# vi
+*~
+
+# Logs
+log/
+*.log
+
+# virtualenv
+env/
+venv/
+ENV/
+VENV/

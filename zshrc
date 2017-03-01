@@ -106,10 +106,11 @@
         alias grep='grep --color=auto'
         alias Lf='less +F'
         alias GR='grep -RIi'
-        alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
-        alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias ssh='ssh -o "logLevel=QUIET"'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
+        alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
+        alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
+        alias '[A'='up'
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
@@ -650,9 +651,9 @@
         source "${HOME}/.iterm2_shell_integration.zsh"
     else
         ## embedded
-        if [[ -o login ]]; then
+        if [[ -o interactive ]]; then
             if [ "$TERM" != "screen" -a "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" ]; then
-                export ITERM_SHELL_INTEGRATION_INSTALLED=Yes
+                ITERM_SHELL_INTEGRATION_INSTALLED=Yes
                 ITERM2_SHOULD_DECORATE_PROMPT="1"
                 # Indicates start of command output. Runs just before command executes.
                 iterm2_before_cmd_executes() {
@@ -660,7 +661,7 @@
                 }
 
                 iterm2_set_user_var() {
-                    printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64)
+                    printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64 | tr -d '\n')
                 }
 
                 # Users can write their own version of this method. It should call
@@ -687,7 +688,7 @@
                 }
 
                 # Mark start of prompt
-                iterm2_prompt_start() {
+                iterm2_prompt_mark() {
                     printf "\033]133;A\007"
                 }
 
@@ -741,7 +742,12 @@
                     ITERM2_SHOULD_DECORATE_PROMPT=""
 
                     # Add our escape sequences just before the prompt is shown.
-                    PS1="%{$(iterm2_prompt_start)%}$PS1%{$(iterm2_prompt_end)%}"
+                    if [[ $PS1 == *'$(iterm2_prompt_mark)'* ]]
+                    then
+                        PS1="$PS1%{$(iterm2_prompt_end)%}"
+                    else
+                        PS1="%{$(iterm2_prompt_mark)%}$PS1%{$(iterm2_prompt_end)%}"
+                    fi
                 }
 
                 iterm2_precmd() {
@@ -776,10 +782,10 @@
                 preexec_functions=($preexec_functions iterm2_preexec)
 
                 iterm2_print_state_data
-                printf "\033]1337;ShellIntegrationVersion=2;shell=zsh\007"
+                printf "\033]1337;ShellIntegrationVersion=5;shell=zsh\007"
             fi
         fi
-        alias imgcat=~/.iterm2/imgcat; alias it2dl=~/.iterm2/it2dl
+
     fi
 
 # Functions

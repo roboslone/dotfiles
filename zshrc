@@ -796,6 +796,10 @@
         print 'failed to disable AirDrop interface' && return 2
     }
 
+    function check_sip() {
+        csrutil status | grep 'enabled' > /dev/null || print "${_red}System Integrity Protection is disabled!${_0}"
+    }
+
     function bsl() {
         if [[ -z "$*" ]]; then
             bsconfig list
@@ -1309,3 +1313,6 @@
 
 # Disable AirPort interface (for PyCharm to be able to connect to IPv6-only hosts)
     [[ -n $PLATFORM_DARWIN ]] && disable_airdrop
+
+# Check System Integrity Protection check.
+    [[ -n $PLATFORM_DARWIN ]] && check_sip

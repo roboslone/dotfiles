@@ -152,7 +152,7 @@ c.Application.log_level = 40
 # c.NotebookApp.extra_template_paths = []
 
 # 
-# c.NotebookApp.file_to_run = ''
+# c.NotebookApp.file_to_run = 'jupyter_startup.py'
 
 # Use minified JS file or not, mainly use during dev to avoid JS recompilation
 # c.NotebookApp.ignore_minified_js = False
@@ -166,7 +166,7 @@ c.Application.log_level = 40
 # c.NotebookApp.iopub_msg_rate_limit = 0
 
 # The IP address the notebook server will listen on.
-#c.NotebookApp.ip = 'sven.search.yandex.net'
+c.NotebookApp.ip = 'FIXME'
 
 # Supply extra arguments that will be passed to Jinja environment.
 # c.NotebookApp.jinja_environment_options = {}
@@ -207,7 +207,7 @@ c.Application.log_level = 40
 # platform dependent and determined by the python standard library `webbrowser`
 # module, unless it is overridden using the --browser (NotebookApp.browser)
 # configuration option.
-# c.NotebookApp.open_browser = True
+c.NotebookApp.open_browser = False
 
 # Hashed password to use for web authentication.
 # 

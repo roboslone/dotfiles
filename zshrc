@@ -629,7 +629,11 @@
 
 # Working directory
     if [[ -e ~/.path ]]; then
-        cd $(cat ~/.path)
+        # Only change working directory if it's set to user's home.
+        # Otherwise it breaks PyCharm's terminal by overwriting correct working dirs.
+        if [[ "$(pwd)" == "$(eval echo "~$USER")" ]]; then
+            cd $(cat ~/.path)
+        fi
     fi
 
 # ZSH options

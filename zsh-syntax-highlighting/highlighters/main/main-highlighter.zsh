@@ -31,16 +31,16 @@
 
 # Define default styles.
 : ${ZSH_HIGHLIGHT_STYLES[default]:=none}
-: ${ZSH_HIGHLIGHT_STYLES[unknown-token]:=fg=red,bold}
+: ${ZSH_HIGHLIGHT_STYLES[unknown-token]:=fg=red}
 : ${ZSH_HIGHLIGHT_STYLES[reserved-word]:=fg=magenta}
-: ${ZSH_HIGHLIGHT_STYLES[alias]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[builtin]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[function]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[command]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[hashed-command]:=fg=white,bold}
-: ${ZSH_HIGHLIGHT_STYLES[path]:=underline,fg=blue}
+: ${ZSH_HIGHLIGHT_STYLES[alias]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[builtin]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[function]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[command]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[hashed-command]:=fg=magenta}
+: ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
 : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
 : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
 : ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=cyan}

@@ -110,28 +110,10 @@
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
         alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
-        alias '[A'='up'
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-
-    ## bsconfig
-        if [[ -n $PLATFORM_LINUX ]]; then
-            alias bsh='sudo bsconfig configuration_history'
-            alias bsp='sudo bsconfig configuration_prepare --now --shards'
-            alias bsa='sudo bsconfig configuration_activate'
-            alias bsaf='sudo bsconfig configuration_activate --force'
-            alias bsd='sudo bsconfig configuration_deactivate --force'
-            alias bsgp='sudo bsconfig --set global_configuration_prepare'
-            alias bsga='sudo bsconfig --set global_configuration_activate'
-            alias bsgd='sudo bsconfig --set global_configuration_deactivate'
-            alias bssd='sudo bsconfig syncdisable --kill'
-            alias bsse='sudo bsconfig syncenable'
-            alias bssf='sudo bsconfig stop --force'
-            alias bss='sudo bsconfig start'
-            alias bscd='bsconfig configuration_dump'
-            alias cmslookup='bsconfig global_listconfigurations | grep -i'
-        fi
+        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade'
 
     ## skynet
         if [[ -n $PLATFORM_LINUX ]]; then
@@ -804,14 +786,6 @@
         csrutil status | grep 'enabled' > /dev/null || print "${_red}System Integrity Protection is disabled!${_0}"
     }
 
-    function bsl() {
-        if [[ -z "$*" ]]; then
-            bsconfig list
-        else
-            bsconfig list | grep -i "$*"
-        fi
-    }
-
     function up() {
         if [[ -z "$@" ]]; then
             repo_up_with_log
@@ -858,406 +832,14 @@
         sudo ip6tables -D INPUT -p tcp --destination-port "$*" -j DROP
     }
 
-    function skylist() {
-        sky list $@ | sed 's/^/+/g' | xargs
-    }
-
-    function check_topology() {
-        for cms in $(sky list K@search_instrum-acms); do
-            echo -n "$cms "; curl -s -I "http://${cms}/res/gencfg/releases/$*/generated/balancer/web_priemka_tun.cfg" 2>/dev/null | grep -R '^HTTP'
-        done
-    }
-
-    function prepare_string() {
-        print "sudo bsconfig configuration_prepare --now --shards $*; echo DONE"
-    }
-
-    function activate_string() {
-        print "sudo bsconfig configuration_activate $*; echo DONE"
-    }
-
-    function activate_force_string() {
-        print "sudo bsconfig configuration_activate --force $*; echo DONE"
-    }
-
-    function deactivate_string() {
-        print "sudo bsconfig configuration_deactivate --force $*; sudo bsconfig configuration_deactivate --force $*; echo DONE"
-    }
-
-    function yr-prepare()
-    {
-        unset _conf
-        unset _hosts
-
-        _conf=$1
-        shift
-        _hosts=$@
-
-        if [[ -z ${_conf} ]] || [[ -z ${_hosts} ]]; then
-            print "Usage: $0 <conf> <hosts>"
-            return 0
-        fi
-
-        yr $(skylist ${_hosts}) / "$(prepare_string ${_conf})"
-    }
-
-    function yr-activate()
-    {
-        unset _conf
-        unset _hosts
-
-        _conf=$1
-        shift
-        _hosts=$@
-
-        if [[ -z ${_conf} ]] || [[ -z ${_hosts} ]]; then
-            print "Usage: $0 <conf> <hosts>"
-            return 0
-        fi
-
-        yr $(skylist ${_hosts}) / "$(activate_string ${_conf})"
-    }
-
-    function yr-activate-force()
-    {
-        unset _conf
-        unset _hosts
-
-        _conf=$1
-        shift
-        _hosts=$@
-
-        if [[ -z ${_conf} ]] || [[ -z ${_hosts} ]]; then
-            print "Usage: $0 <conf> <hosts>"
-            return 0
-        fi
-
-        yr $(skylist ${_hosts}) / "$(activate_force_string ${_conf})"
-    }
-
-    function yr-deactivate()
-    {
-        unset _conf
-        unset _hosts
-
-        _conf=$1
-        shift
-        _hosts=$@
-
-        if [[ -z ${_conf} ]] || [[ -z ${_hosts} ]]; then
-            print "Usage: $0 <conf> <hosts>"
-            return 0
-        fi
-
-        yr $(skylist ${_hosts}) / "$(deactivate_string ${_conf})"
-    }
-
-    function get-macs() {
-        for h in $(sky list "$*"); do print -n "$h "; /Berkanavt/webscripts/admscripts/scripts/get_host_mac.sh $h; done
-    }
-
-    function fix-macs() {
-        for h in $(sky list "$*"); do
-            c_mac=$(/Berkanavt/webscripts/admscripts/scripts/get_host_mac.sh $h)
-            /Berkanavt/webscripts/admscripts/scripts/dhcpm.sh $h $c_mac web-ubuntu-12.04-dev force
-        done
-    }
-
-    function timed-prepare() {
-        unset _time
-        unset _conf
-        unset _filters
-
-        # without arguments
-        if (( $# < 2 )); then
-            print 'usage: timed-prepare <time> <configuration> [<filters>]'
-            return 0
-        fi
-
-        # without filters
-        if (( $# == 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-        fi
-
-        # with filters
-        if (( $# > 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-            shift
-
-            if [[ "$1" == "." ]]; then
-                shift
-            fi
-
-            _filters="$*"
-        fi
-
-        if [ -z "${_filters}" ]; then
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_prepare --now --shards ${_conf}" C@${_conf}
-        else
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_prepare --now --shards ${_conf}" C@${_conf} . ${_filters}
-        fi
-    }
-
-    function timed-activate() {
-        unset _time
-        unset _conf
-        unset _filters
-
-        # without arguments
-        if (( $# < 2 )); then
-            print 'usage: timed-activate <time> <configuration> [<filters>]'
-            return 0
-        fi
-
-        # without filters
-        if (( $# == 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-        fi
-
-        # with filters
-        if (( $# > 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-            shift
-
-            if [[ "$1" == "." ]]; then
-                shift
-            fi
-
-            _filters="$*"
-        fi
-
-        if [ -z "${_filters}" ]; then
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_activate ${_conf}" C@${_conf}
-        else
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_activate ${_conf}" C@${_conf} . ${_filters}
-        fi
-    }
-
-    function timed-activate-force() {
-        unset _time
-        unset _conf
-        unset _filters
-
-        # without arguments
-        if (( $# < 2 )); then
-            print 'usage: timed-activate-force <time> <configuration> [<filters>]'
-            return 0
-        fi
-
-        # without filters
-        if (( $# == 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-        fi
-
-        # with filters
-        if (( $# > 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-            shift
-
-            if [[ "$1" == "." ]]; then
-                shift
-            fi
-
-            _filters="$*"
-        fi
-
-        if [ -z "${_filters}" ]; then
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_activate --force ${_conf}" C@${_conf}
-        else
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_activate --force ${_conf}" C@${_conf} . ${_filters}
-        fi
-    }
-
-    function timed-deactivate-force() {
-        unset _time
-        unset _conf
-        unset _filters
-
-        # without arguments
-        if (( $# < 2 )); then
-            print 'usage: timed-deactivate-force <time> <configuration> [<filters>]'
-            return 0
-        fi
-
-        # without filters
-        if (( $# == 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-        fi
-
-        # with filters
-        if (( $# > 2 )); then
-            _time=$1
-            if ! [[ "${_time}" = <-> ]]; then
-                print "Bad time: ${_time}"
-                return 0
-            fi
-
-            shift
-            _conf=$1
-            shift
-
-            if [[ "$1" == "." ]]; then
-                shift
-            fi
-
-            _filters="$*"
-        fi
-
-        if [ -z "${_filters}" ]; then
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_deactivate --force ${_conf}" C@${_conf}
-        else
-            sky run --cqudp -Up -s ${_time} "sudo /db/bin/bsconfig configuration_deactivate --force ${_conf}" C@${_conf} . ${_filters}
-        fi
-    }
-
     function check_power_capping() {
         _cmd="[ \$(cat /proc/cpuinfo | grep 'cpu MHz' | awk '{print int(\$4)}' | sort -g | tail -1) -ge 1300 ] || echo CAPPING"
         sky run -Up --cqudp "${_cmd}" "$@"
     }
 
-    function genconf() {
-        print "${transp}Warning: You have to run 'svn up' manually${reset_color}"
-
-        unset _start
-        unset _end
-        unset _head
-        unset _logname
-        unset _exitcode
-
-        _start=$(date +%s)
-
-        _head="$*"
-        # Remove .conf from _head
-        _head=${_head/.conf/}
-        _logname="/tmp/genconf-${_head}-`date +%s`.log"
-
-        print "Building ${_head}, log: ${green}${_logname}${reset_color}"
-
-        bsconfig --logfile ${_logname} \
-        --batch-mode --cms-xmlrpc-yr-url http://cmsearchvip.yandex.ru/xmlrpc/yr \
-        --cms-xmlrpc-url http://cmsearchvip.yandex.ru/xmlrpc/bs/ \
-        --cms-json-url http://cmsearchvip.yandex.ru/json/bs/ \
-        genconf ${_head} ${_head}.conf --set
-
-        _exitcode=$?
-        _end=$(date +%s)
-        let "_diff = ${_end} - ${_start}"
-
-        if [[ ${_exitcode} -eq 0 ]]; then
-            print "Built ${_head} in ${green}${_diff} sec${reset_color}"
-        else
-            grep -R 'ERROR' ${_logname}
-            print "${red}${_head} failed to build${reset_color}"
-        fi
-    }
-
-    function global_copy() {
-        unset _start
-        unset _end
-        unset _head
-        unset _logname
-        unset _exitcode
-        unset _conf
-
-        if (( $# != 2 )); then
-            print "Usage: $0 <head> <conf>"
-            return 1
-        fi
-
-        _start=$(date +%s)
-
-        _head=$1
-        _conf=$2
-        # Remove .conf from _head
-        _head=${_head/.conf/}
-        _logname="/tmp/global_copyconfiguration-${_head}-${_conf}-`date +%s`.log"
-
-        print "Building ${_conf} <- ${_head}, log: ${green}${_logname}${reset_color}"
-        
-        bsconfig --logfile ${_logname} --batch-mode \
-        --cms-xmlrpc-yr-url http://cmsearchvip.yandex.ru/xmlrpc/yr \
-        --cms-xmlrpc-url http://cmsearchvip.yandex.ru/xmlrpc/bs/ \
-        --cms-json-url http://cmsearchvip.yandex.ru/json/bs/ \
-        global_copyconfiguration ${_head} ${_conf}
-
-        _exitcode=$?
-        _end=$(date +%s)
-        let "_diff = ${_end} - ${_start}"
-
-        if [[ ${_exitcode} -eq 0 ]]; then
-            print "Built ${_conf} in ${green}${_diff} sec${reset_color}"
-        else
-            grep -R 'ERROR' ${_logname}
-            print "${red}${_conf} failed to build${reset_color}"
-        fi
-    }
-
-    function cdump() {
-        unset _conf
-
-        _conf="$*"
-        _conf=${_conf/C@/}
-
-        print "Dumping C@${_conf} -> ${green}/tmp/${_conf}.dump${_0}"
-
-        bscd ${_conf} > /tmp/${_conf}.dump
-    }
-
     function ils() {
         _OLD_IFS=$IFS
         IFS=$'\n'
-        for i in $(bsconfig list 2&>/dev/null | grep bsconfig | grep -i "$*" | awk '{print$1}'); do
-            print ${i}
-        done
         for i in $(ih list -s "$*"); do
             print ${i}
         done
@@ -1286,28 +868,35 @@
         IFS=${_OLD_IFS}
     }
 
-    function grep_ydl_prestable_logs() {
-        unset _latest_conf
+    function grep_logs {
+        unset _configuration
+        unset _log_name
+        unset _text
+        unset _script_path
 
-        _latest_conf=$(cmslookup 'ydl_prestable' | tail -1 | awk '{print$1}')
-        if [ -z ${_latest_conf} ]; then
-            print "${yellow}confoguration not found${_0}"
-        else
-            print "${green}${_latest_conf}${_0}"
-            sky run -Up --cqudp "grep -i -- '$*' /usr/local/www/logs/${_latest_conf}-1955-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
-        fi
-    }
+        _configuration="$1"
+        shift
+        _log_name="$1"
+        shift
+        _text="$*"
 
-    function grep_ydl_logs() {
-        unset _latest_conf
+        print
+        print "${cyan}Configuration:${_0} ${_configuration}"
+        print "${cyan}Log file:     ${_0} ${_log_name}"
+        print "${cyan}Text:         ${_0} ${_text}"
 
-        _latest_conf=$(cmslookup 'ydl-' | tail -1 | awk '{print$1}')
-        if [ -z ${_latest_conf} ]; then
-            print "${yellow}confoguration not found${_0}"
-        else
-            print "${green}${_latest_conf}${_0}"
-            sky run -Up --cqudp "grep -i -- '$*' /usr/local/www/logs/${_latest_conf}-1985-ydl.log" C@${_latest_conf} Gv -- '-----' Gv '=====' Gv 'Success on '
-        fi
+        _script_path=$(mktemp)
+
+        echo '#!/usr/bin/env zsh' >> "${_script_path}"
+        echo 'source /home/roboslone/.zshrc' >> "${_script_path}"
+        echo "idir=\$(ils ${_configuration} | tail -1 | awk -F ' ' '{print\$2}')" >> "${_script_path}"
+        echo "grep '${_text}' /db/iss3/instances/\${idir}/${_log_name} " >> "${_script_path}"
+
+        print "\n${cyan}Script:${black}"
+        cat "${_script_path}"
+        print "${_0}"
+
+        sky run -Up -F "${_script_path}" "C@${_configuration}"
     }
 
 # Additional config

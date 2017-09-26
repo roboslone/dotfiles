@@ -44,8 +44,8 @@
 : ${ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]:=}
 : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
 : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
-: ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=yellow}
-: ${ZSH_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=yellow}
+: ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=cyan}
+: ${ZSH_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=cyan}
 : ${ZSH_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
 : ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=green}
 : ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=green}

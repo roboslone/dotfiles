@@ -71,8 +71,8 @@
     autoload -U promptinit
     autoload -U colors && colors
     promptinit
-    PROMPT='%* %1{⟩%} %{$fg_no_bold[${primary_color}]%}%n%{$reset_color%}%B@%b%m %{$fg_no_bold[${primary_color}]%}%#%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg[${primary_color}]%}%~%{$reset_color%}'
+    PROMPT='%* %{$fg_no_bold[${primary_color}]%}%1{⟩%}%{$reset_color%} '
+    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}%n%{$reset_color%}%B@%b%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} %{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Path
     if [[ -e /db/bin ]]; then

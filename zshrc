@@ -151,8 +151,12 @@
     fi
 
 # Syntax highlighting
-    if [[ -e ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-        source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    if [[ -e ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+        source ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    else
+        if [[ -e ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+            source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        fi
     fi
 
 # Autosuggestions

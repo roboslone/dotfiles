@@ -1,3 +1,6 @@
+# Configuration
+DEFAULT_USERNAME="roboslone"
+
 # Formatting
     ## common
         bold='\033[1m'      # bold
@@ -68,11 +71,17 @@
     }
 
 # Prompt and colors
+    if [[ "$USER" == "$DEFAULT_USERNAME" ]]; then
+        _display_user=""
+    else
+        _display_user="$USER@"
+    fi
+
     autoload -U promptinit
     autoload -U colors && colors
     promptinit
     PROMPT='%* %{$fg_no_bold[${primary_color}]%}%1{⟩%}%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}%n%{$reset_color%}%B@%b%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} %{$fg[${primary_color}]%}%~%{$reset_color%}'
+    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} ⟩ %{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Path
     if [[ -e /db/bin ]]; then

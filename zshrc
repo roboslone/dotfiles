@@ -1,5 +1,5 @@
 # Configuration
-DEFAULT_USERNAME="roboslone"
+    DEFAULT_USERNAME="roboslone"
 
 # Formatting
     ## common

@@ -66,7 +66,7 @@
     function vcs_info_wrapper() {
         vcs_info
         if [ -n "$vcs_info_msg_0_" ]; then
-            echo "${vcs_info_msg_0_}$del"
+            echo "${vcs_info_msg_0_}$del |"
         fi
     }
 
@@ -81,7 +81,7 @@
     autoload -U colors && colors
     promptinit
     PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} -> %{$fg[${primary_color}]%}%~%{$reset_color%}'
+    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} | %{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Path
     if [[ -e /db/bin ]]; then

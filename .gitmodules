@@ -1,0 +1,3 @@
+[submodule "fast-syntax-highlighting"]
+	path = fast-syntax-highlighting
+	url = git@github.com:roboslone/fast-syntax-highlighting.git

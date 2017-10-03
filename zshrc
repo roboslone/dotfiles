@@ -125,6 +125,9 @@
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
         [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade'
 
+    ## Linux only
+        [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
+
     ## skynet
         if [[ -n $PLATFORM_LINUX ]]; then
             alias check_heartbeat='tail -1000 /var/log/skynet/heartbeat-client.log | grep -i instancestatev3'

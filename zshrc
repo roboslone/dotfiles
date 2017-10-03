@@ -118,7 +118,7 @@
         alias GR='grep -RIi'
         alias ssh='ssh -o "logLevel=QUIET"'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
-        alias repo_up='svn info &> /dev/null && svn up -q || git pull -q'
+        alias repo_up='svn info &> /dev/null && svn up -q || git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
 
     ## OS X only

@@ -84,17 +84,7 @@
     RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} | %{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Path
-    if [[ -e /db/bin ]]; then
-        export PATH="/db/bin:$PATH"
-    fi
-
-    if [[ -e /usr/local/bin ]]; then
-        export PATH="/usr/local/bin:$PATH"
-    fi
-
-    if [[ -e /usr/local/sbin ]]; then
-        export PATH="/usr/local/sbin:$PATH"
-    fi
+    export PATH="$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
 
 # Aliases
     ## global
@@ -107,6 +97,7 @@
         alias -g H='|head'
         alias -g W='|wc -l'
         alias -g Y='ya make &&'
+        alias -g DBG='LOGGING_LEVEL=DEBUG'
 
     ## common
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
@@ -118,12 +109,12 @@
         alias GR='grep -RIi'
         alias ssh='ssh -o "logLevel=QUIET"'
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
-        alias repo_up='svn info &> /dev/null && svn up -q || git pull --quiet && git submodule update --init --recursive --quiet'
+        alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade'
+        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade && brew cleanup; brew doctor'
 
     ## Linux only
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
@@ -885,35 +876,30 @@
         IFS=${_OLD_IFS}
     }
 
-    function grep_logs {
-        unset _configuration
-        unset _log_name
-        unset _text
-        unset _script_path
+    function st() {
+        # VCS status.
+        unset _output
 
-        _configuration="$1"
-        shift
-        _log_name="$1"
-        shift
-        _text="$*"
+        svn info &>/dev/null
+        if [ $? -eq 0 ]; then
+            _output=$(svn st -q | grep -v 'W155007' | sed 's/       / /' 1>&1)
+            if [ -n "${_output}" ]; then
+                print "\n${yellow}# SVN${_0}"
+                print "${_output}"
+            fi
+        fi
+
+        if [ -d .git ]; then
+            _output=$(git status -s | sed 's/^ //' 2>&1)
+            if [ $? -eq 0 ]; then
+                if [ -n "${_output}" ]; then
+                    print "\n${yellow}# Git${_0}"
+                    print "${_output}"
+                fi
+            fi
+        fi
 
         print
-        print "${cyan}Configuration:${_0} ${_configuration}"
-        print "${cyan}Log file:     ${_0} ${_log_name}"
-        print "${cyan}Text:         ${_0} ${_text}"
-
-        _script_path=$(mktemp)
-
-        echo '#!/usr/bin/env zsh' >> "${_script_path}"
-        echo 'source /home/roboslone/.zshrc' >> "${_script_path}"
-        echo "idir=\$(ils ${_configuration} | tail -1 | awk -F ' ' '{print\$2}')" >> "${_script_path}"
-        echo "grep '${_text}' /db/iss3/instances/\${idir}/${_log_name} " >> "${_script_path}"
-
-        print "\n${cyan}Script:${black}"
-        cat "${_script_path}"
-        print "${_0}"
-
-        sky run -Up -F "${_script_path}" "C@${_configuration}"
     }
 
 # Additional config

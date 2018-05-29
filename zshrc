@@ -58,10 +58,12 @@
     setopt prompt_subst
     autoload -Uz vcs_info
 
+    zstyle ':vcs_info:*' get-revision true
     zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f'
     zstyle ':vcs_info:*' formats '%F{green}%b ⭠%f'
+    zstyle ':vcs_info:git:*' formats '%i%F{black}@%F{green}%b ⭠%f'
     zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%F{green}r%r'
-    zstyle ':vcs_info:*' enable git cvs svn
+    zstyle ':vcs_info:*' enable git svn
 
     function vcs_info_wrapper() {
         vcs_info
@@ -96,7 +98,7 @@
         alias -g T='|tail'
         alias -g H='|head'
         alias -g W='|wc -l'
-        alias -g Y='ya make &&'
+        alias -g Y='ya make -q &&'
         alias -g DBG='LOGGING_LEVEL=DEBUG'
 
     ## common
@@ -114,7 +116,7 @@
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade && brew cleanup; brew doctor'
+        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade; brew doctor'
 
     ## Linux only
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
@@ -882,7 +884,7 @@
 
         svn info &>/dev/null
         if [ $? -eq 0 ]; then
-            _output=$(svn st -q | grep -v 'W155007' | sed 's/       / /' 1>&1)
+            _output=$(svn st | grep -v 'W155007' | sed 's/       / /' | sed 's/^/    /' 1>&1)
             if [ -n "${_output}" ]; then
                 print "\n${yellow}# SVN${_0}"
                 print "${_output}"
@@ -890,7 +892,7 @@
         fi
 
         if [ -d .git ]; then
-            _output=$(git status -s | sed 's/^ //' 2>&1)
+            _output=$(git status -s | sed 's/^ /    /' 2>&1)
             if [ $? -eq 0 ]; then
                 if [ -n "${_output}" ]; then
                     print "\n${yellow}# Git${_0}"
@@ -908,7 +910,7 @@
     fi
 
 # Disable AirPort interface (for PyCharm to be able to connect to IPv6-only hosts)
-    [[ -n $PLATFORM_DARWIN ]] && disable_airdrop
+#    [[ -n $PLATFORM_DARWIN ]] && disable_airdrop
 
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip

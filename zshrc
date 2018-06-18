@@ -100,6 +100,7 @@
         alias -g W='|wc -l'
         alias -g Y='ya make -q &&'
         alias -g DBG='LOGGING_LEVEL=DEBUG'
+        alias -g S='|subl'
 
     ## common
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
@@ -113,6 +114,10 @@
         alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
         alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
+        alias gs='git status'
+        alias gp='git pull'
+        alias gco='git checkout'
+        alias fav='echo $(pwd) >> ~/.favorite_dirs'
 
     ## OS X only
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
@@ -903,6 +908,17 @@
 
         print
     }
+
+    function fcd() {
+        unset _target_dir
+        _target_dir="$(cat ~/.favorite_dirs | fzf)"
+        cd "${_target_dir}"
+        echo -e "\n${green}-> ${_target_dir}${_0}"
+    }
+
+# Shortcut bindings
+    zle -N fcd
+    bindkey ^h fcd
 
 # Additional config
     if [[ -e ~/.zshrc.ext ]]; then

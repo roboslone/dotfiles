@@ -1,8 +1,8 @@
-# Configuration
+# Configuration.
     DEFAULT_USERNAME="roboslone"
 
-# Formatting
-    ## common
+# Formatting.
+    ## Common.
         bold='\033[1m'      # bold
         bou='\033[5m'       # bounce
         transp='\033[2m'    # transparent
@@ -10,7 +10,7 @@
         inv='\033[7m'       # inverted (background color <> font color)
         normal='\033[m'     # format reset
         _0='\033[m'         # same as ${normal}
-    ## foreground colors
+    ## Foreground colors.
         black='\033[30m'
         red='\033[31m'
         green='\033[32m'
@@ -19,7 +19,7 @@
         violet='\033[35m'
         cyan='\033[36m'
         grey='\033[37m'
-    ## background colors
+    ## Background colors.
         _black='\033[40m'
         _red='\033[41m'
         _green='\033[42m'
@@ -29,32 +29,32 @@
         _cyan='\033[46m'
         _grey='\033[47m'
 
-# Platform specific variables
+# Platform specific variables.
     unset PLATFORM_LINUX
     unset PLATFORM_DARWIN
     [[ $(uname) == 'Darwin' ]] && export PLATFORM_DARWIN=1 && export PLATFORM_LINUX=
     [[ $(uname) == 'Linux' ]] && export PLATFORM_LINUX=1 && export PLATFORM_DARWIN=
 
-# Autocomplete
+# Autocomplete.
     autoload -U compinit
     compinit
     setopt completealiases
     zstyle ':completion:*' menu select
     unsetopt nomatch
 
-# Additional completions for ZSH
+# Additional completions for ZSH.
     if [[ -e /usr/local/share/zsh-completions ]]; then
         fpath=(/usr/local/share/zsh-completions $fpath)
     fi
 
-# Primary color
+# Primary color.
     if [[ -e ~/.color ]]; then
         primary_color=$(cat ~/.color)
     else
         primary_color='cyan'
     fi
 
-# VCS
+# VCS.
     setopt prompt_subst
     autoload -Uz vcs_info
 
@@ -72,7 +72,7 @@
         fi
     }
 
-# Prompt and colors
+# Prompt and colors.
     if [[ "$USER" == "$DEFAULT_USERNAME" ]]; then
         _display_user=""
     else
@@ -85,11 +85,11 @@
     PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
     RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} | %{$fg[${primary_color}]%}%~%{$reset_color%}'
 
-# Path
+# Path.
     export PATH="$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
 
-# Aliases
-    ## global
+# Aliases.
+    ## Global.
         alias -g NN='&>/dev/null'
         alias -g V='|vim -'
         alias -g G='|grep -i'
@@ -102,7 +102,7 @@
         alias -g DBG='LOGGING_LEVEL=DEBUG'
         alias -g S='|subl'
 
-    ## common
+    ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
         [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.28_1/bin/gls --color=auto -F --group-directories-first'
         alias ll='ls -la'
@@ -119,29 +119,18 @@
         alias gco='git checkout'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
 
-    ## OS X only
+    ## macOS only.
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
         [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade; brew doctor'
 
-    ## Linux only
+    ## Linux only.
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
 
-    ## skynet
-        if [[ -n $PLATFORM_LINUX ]]; then
-            alias check_heartbeat='tail -1000 /var/log/skynet/heartbeat-client.log | grep -i instancestatev3'
-            alias check_skybone='ps -ef | grep skybone-dl | grep -v grep'
-        fi
-
-    ## power capping
-        if [[ -n $PLATFORM_LINUX ]]; then
-            alias disable_power_capping='ipmitool -t 0x2c -b 6 raw 0x2E 0xC1 0x57 0x01 0x00 0x0 0x1 0x0 0x0 0x64 0x0 0x70 0x17 0x0 0x0 0x00 0x00 0x3 0x0'
-        fi
-
-# Editor
+# Editor.
     export EDITOR='vim'
     [[ -n $PLATFORM_DARWIN ]] && export HOMEBREW_EDITOR='vim'
 
-# History
+# History.
     SAVEHIST=100000
     HISTSIZE=100000
     HISTFILE=~/.zsh_history
@@ -152,16 +141,16 @@
     setopt hist_ignore_space
     setopt hist_reduce_blanks
 
-# Locale
+# Locale.
     export LC_ALL='en_US.UTF-8'
 
-# Del key fix (OS X only)
+# Del key fix (macOS only).
     if [[ -n $PLATFORM_DARWIN ]]; then
         bindkey "^[[3~"     delete-char
         bindkey "^[3;5~"    delete-char
     fi
 
-# Syntax highlighting
+# Syntax highlighting.
     if [[ -e ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
         source ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     else
@@ -170,7 +159,7 @@
         fi
     fi
 
-# Autosuggestions
+# Autosuggestions.
     if [[ -e ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
         ## external
         source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -624,7 +613,7 @@
 
     fi
 
-# Working directory
+# Working directory.
     if [[ -e ~/.path ]]; then
         # Only change working directory if it's set to user's home.
         # Otherwise it breaks PyCharm's terminal by overwriting correct working dirs.
@@ -633,20 +622,20 @@
         fi
     fi
 
-# ZSH options
+# ZSH options.
     setopt autocd
     setopt interactive_comments
 
-# Constants
+# Constants.
     WORDCHARS="@"
 
-# FZF
+# FZF.
     if [[ -e "${HOME}/.fzf.zsh" ]]; then
         source "${HOME}/.fzf.zsh"
         export FZF_DEFAULT_OPTS='--height 100% -i --multi --exact --prompt="" --no-mouse --margin=3 --color="fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,info:-1,prompt:-1,pointer:-1,marker:32,spinner:-1,header:-1"'
     fi
 
-# iTerm2 shell integration
+# iTerm2 shell integration.
     if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
         ## external
         source "${HOME}/.iterm2_shell_integration.zsh"
@@ -789,7 +778,7 @@
 
     fi
 
-# Functions
+# Functions.
     function disable_airdrop() {
         ifconfig awdl0 &> /dev/null || (print 'AirDrop interface (awdl0) does not exist' && return 1)
         ifconfig awdl0 | grep status | grep inactive &> /dev/null && return 0
@@ -814,29 +803,6 @@
         fi
     }
 
-    function ve() {
-        unset _env
-        unset _fzf_bin
-        deactivate &> /dev/null
-
-        _fzf_bin=$(which fzf)
-        if [ -e ${_fzf_bin} ]; then
-            _env=$(find . -type f -name "activate" | ${_fzf_bin})
-        else
-            _env=$(find . -type f -name "activate" | head -1)
-            print "${red}fzf is not installed, using autoselect${_0}"
-        fi
-
-        if [ -z ${_env} ]; then
-            print "${yellow}no virtualenv selected${_0}"
-        else
-            print "selected ${green}${_env}${_0}"
-            source ${_env}
-            cd $(dirname ${_env})/../../
-            [ -d 'src' ] && cd src
-        fi
-    }
-
     function ban() {
         sudo iptables -A INPUT -p tcp --destination-port "$*" -j DROP
         sudo ip6tables -A INPUT -p tcp --destination-port "$*" -j DROP
@@ -847,39 +813,12 @@
         sudo ip6tables -D INPUT -p tcp --destination-port "$*" -j DROP
     }
 
-    function check_power_capping() {
-        _cmd="[ \$(cat /proc/cpuinfo | grep 'cpu MHz' | awk '{print int(\$4)}' | sort -g | tail -1) -ge 1300 ] || echo CAPPING"
-        sky run -Up --cqudp "${_cmd}" "$@"
-    }
-
     function ils() {
         _OLD_IFS=$IFS
         IFS=$'\n'
         for i in $(ih list -s "$*"); do
             print ${i}
         done
-        IFS=${_OLD_IFS}
-    }
-
-    function icd() {
-        _OLD_IFS=$IFS
-        IFS=$'\n'
-
-        _fzf_bin=$(which fzf)
-        if [ -e ${_fzf_bin} ]; then
-            _instance=$(ils "$*" | fzf)
-        else
-            print "${red}fzf is not installed${_0}"
-            return 1
-        fi
-
-        if [ -z ${_instance} ]; then
-            print "${yellow}no instance selected${_0}"
-        else
-            print "${_instance}"
-            $(print "${_instance}" | grep bsconfig) && cd ${_instance} || cd /db/iss3/instances/$(print ${_instance} | awk '{print$2}')
-        fi
-
         IFS=${_OLD_IFS}
     }
 
@@ -916,17 +855,14 @@
         echo -e "\n${green}-> ${_target_dir}${_0}"
     }
 
-# Shortcut bindings
+# Shortcut bindings.
     zle -N fcd
     bindkey ^h fcd
 
-# Additional config
+# Additional config.
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext
     fi
-
-# Disable AirPort interface (for PyCharm to be able to connect to IPv6-only hosts)
-#    [[ -n $PLATFORM_DARWIN ]] && disable_airdrop
 
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip

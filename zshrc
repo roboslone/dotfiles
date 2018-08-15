@@ -1,5 +1,6 @@
 # Configuration.
     DEFAULT_USERNAME="roboslone"
+    DEFAULT_HOSTNAME="roboslone-osx"
 
 # Formatting.
     ## Common.
@@ -60,15 +61,15 @@
 
     zstyle ':vcs_info:*' get-revision true
     zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f'
-    zstyle ':vcs_info:*' formats '%F{green}%b ⭠%f'
-    zstyle ':vcs_info:git:*' formats '%i%F{black}@%F{green}%b ⭠%f'
+    zstyle ':vcs_info:*' formats '%F{green}%b%f'
+    zstyle ':vcs_info:git:*' formats '%F{black}%i@%F{green}%b%f'
     zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%F{green}r%r'
     zstyle ':vcs_info:*' enable git svn
 
     function vcs_info_wrapper() {
         vcs_info
         if [ -n "$vcs_info_msg_0_" ]; then
-            echo "${vcs_info_msg_0_}$del |"
+            echo "${vcs_info_msg_0_}$del %F{black}|%f"
         fi
     }
 
@@ -79,11 +80,17 @@
         _display_user="$USER@"
     fi
 
+    if [[ "$(hostname)" == "$DEFAULT_HOSTNAME" ]]; then
+        _display_host=""
+    else
+        _display_host="$(hostname) %F{black}|%f "
+    fi
+
     autoload -U promptinit
     autoload -U colors && colors
     promptinit
     PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}%m%{$fg_no_bold[${primary_color}]%}%{$reset_color%} | %{$fg[${primary_color}]%}%~%{$reset_color%}'
+    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Path.
     export PATH="$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
@@ -104,7 +111,7 @@
 
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
-        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.28_1/bin/gls --color=auto -F --group-directories-first'
+        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.30/bin/gls --color=auto -F --group-directories-first'
         alias ll='ls -la'
         alias l1='ls -1'
         alias grep='grep --color=auto'
@@ -858,6 +865,10 @@
 # Shortcut bindings.
     zle -N fcd
     bindkey ^h fcd
+
+    autoload -z edit-command-line
+    zle -N edit-command-line
+    bindkey "^X^E" edit-command-line
 
 # Additional config.
     if [[ -e ~/.zshrc.ext ]]; then

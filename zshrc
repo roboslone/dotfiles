@@ -855,6 +855,15 @@
         print
     }
 
+    function svnsync() {
+        print "${green}Sync status:${_0}"
+        st
+
+        print "\n${yellow}Committing in 5 seconds...${_0}"
+        sleep 5
+        svn ci -m "github sync ($(git rev-parse HEAD)@$(git rev-parse --abbrev-ref HEAD))"
+    }
+
     function fcd() {
         unset _target_dir
         _target_dir="$(cat ~/.favorite_dirs | fzf)"

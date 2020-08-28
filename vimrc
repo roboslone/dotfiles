@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mitsuhiko/vim-jinja'
@@ -38,10 +37,6 @@ autocmd VimEnter * call AirlineInit()
 
 " GitGutter setup
 let g:gitgutter_sign_column_always = 1
-
-" YCM setup
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_key_list_select_completion = ['<TAB>', ]
 
 " FZF setup
 set rtp+=/usr/local/Cellar/fzf/0.13.3

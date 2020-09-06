@@ -73,25 +73,6 @@
         fi
     }
 
-# Prompt and colors.
-    if [[ "$USER" == "$DEFAULT_USERNAME" ]]; then
-        _display_user=""
-    else
-        _display_user="$USER@"
-    fi
-
-    if [[ "$(hostname)" == "$DEFAULT_HOSTNAME" ]]; then
-        _display_host=""
-    else
-        _display_host="$(hostname) %F{black}|%f "
-    fi
-
-    autoload -U promptinit
-    autoload -U colors && colors
-    promptinit
-    PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
-
 # Path.
     export PATH="$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
 
@@ -883,6 +864,25 @@
     if [[ -e ~/.zshrc.ext ]]; then
         source ~/.zshrc.ext
     fi
+
+# Prompt and colors.
+    if [[ "$USER" == "$DEFAULT_USERNAME" ]]; then
+        _display_user=""
+    else
+        _display_user="$USER@"
+    fi
+
+    if [[ "$(hostname)" == "$DEFAULT_HOSTNAME" ]]; then
+        _display_host=""
+    else
+        _display_host="$(hostname) %F{black}|%f "
+    fi
+
+    autoload -U promptinit
+    autoload -U colors && colors
+    promptinit
+    PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
+    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
 
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip

@@ -139,6 +139,8 @@
     fi
 
 # Syntax highlighting.
+    export FAST_WORK_DIR='~/Dotfiles/fast-syntax-highlighting-themes'
+
     if [[ -e ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
         source ~/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     else

@@ -30,6 +30,9 @@
         _cyan='\033[46m'
         _grey='\033[47m'
 
+# Loading...
+	echo -e "${black}Loading...${_0}"
+
 # Platform specific variables.
     unset PLATFORM_LINUX
     unset PLATFORM_DARWIN
@@ -140,7 +143,6 @@
 
 # Syntax highlighting.
 	export FAST_WORK_DIR='~/Dotfiles/fast-syntax-highlighting-themes'
-
 
     if [[ -e ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
         source ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
@@ -433,6 +435,9 @@
     promptinit
     PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
     RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
+
+# Done loading.
+	clear
 
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip

@@ -106,7 +106,7 @@
         alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias gs='git status'
-        alias gp='git pull'
+        alias gp='git pull && git log -n 1 --format="%ai %s"'
         alias gco='git checkout'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
 

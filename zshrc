@@ -106,8 +106,6 @@
         alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias gs='git status'
-        alias gp='git pull && git log -n 1 --format="%ai %s"'
-        alias gco='git checkout'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
 
     ## macOS only.
@@ -402,6 +400,13 @@
         _target_dir="$(cat ~/.favorite_dirs | fzf)"
         cd "${_target_dir}"
         echo -e "\n${green}-> ${_target_dir}${_0}"
+    }
+
+    function gp() {
+        git pull && git log -n 1 --format="%ai %s"
+        if [[ -z "$*" ]]; then; else
+            git checkout "$*" && git pull
+        fi
     }
 
 # Shortcut bindings.

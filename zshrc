@@ -95,7 +95,7 @@
 
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
-        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/8.32/bin/gls --color=auto -F --group-directories-first'
+        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/9.0/bin/gls --color=auto -F --group-directories-first'
         alias ll='ls -la'
         alias l1='ls -1'
         alias grep='grep --color=auto'
@@ -407,6 +407,10 @@
         if [[ -z "$*" ]]; then; else
             git checkout "$*" && git pull
         fi
+    }
+
+    function b64() {
+        echo "$*" | base64 -d
     }
 
 # Shortcut bindings.

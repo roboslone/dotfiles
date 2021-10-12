@@ -107,6 +107,7 @@
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias gs='git status'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
+        alias GC='git reset --hard HEAD && git clean -qfd'
 
     ## macOS only.
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'

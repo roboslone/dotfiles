@@ -1,11 +1,6 @@
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
 # Configuration.
     DEFAULT_USERNAME="roboslone"
-    DEFAULT_HOSTNAME="roboslone-osx"
+    DEFAULT_HOSTNAME="roboslone-m1"
 
 # Formatting.
     ## Common.
@@ -100,7 +95,7 @@
 
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
-        [[ -n $PLATFORM_DARWIN ]] && alias ls='/usr/local/Cellar/coreutils/9.0_1/bin/gls --color=auto -F --group-directories-first'
+        [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
         alias ll='ls -la'
         alias l1='ls -1'
         alias grep='grep --color=auto'

@@ -64,9 +64,9 @@
 
     zstyle ':vcs_info:*' get-revision true
     zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f'
-    zstyle ':vcs_info:*' formats '%F{green}%b%f'
-    zstyle ':vcs_info:git:*' formats '%F{black}%i@%F{green}%b%f'
-    zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%F{green}r%r'
+    zstyle ':vcs_info:*' formats '%F{yellow}%b%f'
+    zstyle ':vcs_info:git:*' formats '%F{black}%i@%F{yellow}%b%f'
+    zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%F{yellow}r%r'
     zstyle ':vcs_info:*' enable git svn
 
     function vcs_info_wrapper() {
@@ -406,7 +406,7 @@
     function gp() {
         git pull && git log -n 1 --format="%ai %s"
         if [[ -z "$*" ]]; then; else
-            git checkout "$*" && git pull
+            git checkout "$*" && git pull && git log -n 1 --format="%ai %s"
         fi
     }
 

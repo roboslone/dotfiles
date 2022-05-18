@@ -14,8 +14,8 @@ style = "bold black"
 style = "yellow"
 
 [character]
-success_symbol = "[⌘](bold black)"
-error_symbol = "[⌘](bold red)"
+success_symbol = "[|](bold black)"
+error_symbol = "[|](bold red)"
 vicmd_symbol = "[❮](bold green)"
 
 [golang]

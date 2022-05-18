@@ -447,8 +447,9 @@
     autoload -U promptinit
     autoload -U colors && colors
     promptinit
-    PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
-    RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
+    #PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
+    #RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
+    eval "$(starship init zsh)"
 
 # Done loading.
 	clear

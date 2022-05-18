@@ -1,4 +1,4 @@
-add_newline = false
+add_newline = true
 format = "$time$hostname$character"
 right_format = "$directory$git_branch$git_status$git_state"
 

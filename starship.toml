@@ -1,6 +1,10 @@
 add_newline = false
 format = "$time$character"
-right_format = "$directory$git_branch$git_status$git_state"
+right_format = "$hostname$directory$git_branch$git_status$git_state"
+
+[hostname]
+style = "red"
+format = "[$hostname]($style) "
 
 [directory]
 truncation_length = 5

@@ -1,0 +1,24 @@
+add_newline = false
+format = "$time$character"
+right_format = "$directory$git_branch$git_status$git_state"
+
+[directory]
+truncation_length = 5
+style = "bold black"
+
+[git_branch]
+style = "yellow"
+
+[character]
+success_symbol = "[|](bold yellow)"
+error_symbol = "[|](bold red)"
+vicmd_symbol = "[❮](bold green)"
+
+[golang]
+format = "[$version](bold cyan) "
+disabled = true
+
+[time]
+disabled = false
+style = ""
+format = "[$time]($style) "

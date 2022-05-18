@@ -1,9 +1,9 @@
 add_newline = false
-format = "$time$character"
-right_format = "$hostname$directory$git_branch$git_status$git_state"
+format = "$time$hostname$character"
+right_format = "$directory$git_branch$git_status$git_state"
 
 [hostname]
-style = "red"
+style = "yellow"
 format = "[$hostname]($style) "
 
 [directory]
@@ -14,8 +14,8 @@ style = "bold black"
 style = "yellow"
 
 [character]
-success_symbol = "[|](bold yellow)"
-error_symbol = "[|](bold red)"
+success_symbol = "[⌘](bold black)"
+error_symbol = "[⌘](bold red)"
 vicmd_symbol = "[❮](bold green)"
 
 [golang]

@@ -1,5 +1,8 @@
 add_newline = false
-format = "$time$hostname$fill $directory$git_branch$git_status$git_state\n$character"
+format = "  $time$hostname$fill $directory$git_branch$git_status$git_state \n$character"
+
+[battery]
+disabled = false
 
 [fill]
 symbol = "―"

@@ -1,6 +1,7 @@
 # Configuration.
     DEFAULT_USERNAME="roboslone"
     DEFAULT_HOSTNAME="roboslone-m1"
+    export HOSTNAME=$(hostname)
 
 # Formatting.
     ## Common.

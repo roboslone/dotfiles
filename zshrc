@@ -415,6 +415,14 @@
 	gp master
     }
 
+    function gcm() {
+	git co master
+    }
+
+    function gfm() {
+	git fetch -u origin master:master
+    }
+
     function b64() {
         echo "$*" | base64 -d
     }

@@ -9,7 +9,6 @@ symbol = "―"
 style = "black"
 
 [hostname]
-ssh_only = false
 style = "yellow"
 format = "[$hostname]($style) "
 

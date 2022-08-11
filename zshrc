@@ -423,6 +423,10 @@
 	git fetch -u origin master:master
     }
 
+    function gco() {
+	git checkout -b "akhristyukhin/$*"
+    }
+
     function b64() {
         echo "$*" | base64 -d
     }

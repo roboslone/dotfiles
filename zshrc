@@ -32,7 +32,7 @@
         _grey='\033[47m'
 
 # Loading...
-	echo -e "${black}Loading...${_0}"
+    echo -e "${black}Loading...${_0}"
 
 # Platform specific variables.
     unset PLATFORM_LINUX
@@ -142,14 +142,14 @@
     fi
 
 # Syntax highlighting.
-	export FAST_WORK_DIR='~/Dotfiles/fast-syntax-highlighting-themes'
+    export FAST_WORK_DIR='~/Dotfiles/fast-syntax-highlighting-themes'
 
     if [[ -e ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
         source ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     fi
 
 # Suggest.
-	if [[ -e ~/Dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+    if [[ -e ~/Dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
         source ~/Dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     fi
 
@@ -412,19 +412,19 @@
     }
 
     function gpm() {
-	gp master
+        gp master
     }
 
     function gcm() {
-	git co master
+        git co master
     }
 
     function gfm() {
-	git fetch -u origin master:master
+        git fetch -u origin master:master
     }
 
     function gco() {
-	git checkout -b "akhristyukhin/$*"
+        git checkout $(git branch | fzf| tr -d '[:space:]')
     }
 
     function b64() {
@@ -465,7 +465,7 @@
     eval "$(starship init zsh)"
 
 # Done loading.
-	clear
+    clear
 
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip

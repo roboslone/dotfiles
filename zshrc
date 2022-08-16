@@ -424,7 +424,7 @@
     }
 
     function gco() {
-        git checkout $(git branch | fzf| tr -d '[:space:]')
+        git checkout $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
     }
 
     function b64() {

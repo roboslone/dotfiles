@@ -1,5 +1,5 @@
 add_newline = false
-format = "[┌―](black) $time$hostname$fill $directory$git_branch$git_status$git_state\n$character"
+format = "[┌―](black) $time$hostname$cmd_duration$fill $directory$git_branch$git_status$git_state\n$character"
 
 [battery]
 disabled = false
@@ -33,3 +33,9 @@ disabled = true
 disabled = false
 style = ""
 format = "[$time]($style) "
+
+[cmd_duration]
+min_time = 1_000
+show_milliseconds = true
+format = "[$duration]($style) "
+style = "bold cyan"

@@ -35,7 +35,7 @@ style = ""
 format = "[$time]($style) "
 
 [cmd_duration]
-min_time = 1_000
+min_time = 100
 show_milliseconds = true
 format = "[$duration]($style) "
 style = "bold cyan"

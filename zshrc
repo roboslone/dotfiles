@@ -427,6 +427,10 @@
         git checkout $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
     }
 
+    function gbd() {
+        git branch -d $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
+    }
+
     function b64() {
         echo "$*" | base64 -d
     }

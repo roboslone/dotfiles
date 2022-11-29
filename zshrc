@@ -93,6 +93,7 @@
         alias -g Y='ya make -q &&'
         alias -g DBG='LOGGING_LEVEL=DEBUG'
         alias -g S='|subl'
+	alias -g J='|jq .'
 
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
@@ -428,7 +429,10 @@
     }
 
     function gbd() {
-        git branch -d $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
+        unset _branch
+        for _branch in $(git branch | grep -v '*' | fzf); do
+            git br -d $_branch
+        done
     }
 
     function b64() {

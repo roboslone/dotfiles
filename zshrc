@@ -171,9 +171,9 @@
     WORDCHARS="@"
 
 # FZF.
+    export FZF_DEFAULT_OPTS='--pointer="🡢" --height 100% -i --multi --exact --prompt="" --no-mouse --margin=3 --color="fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,info:-1,prompt:-1,pointer:-1,marker:32,spinner:-1,header:-1"'
     if [[ -e "${HOME}/.fzf.zsh" ]]; then
         source "${HOME}/.fzf.zsh"
-        export FZF_DEFAULT_OPTS='--pointer="🡢" --height 100% -i --multi --exact --prompt="" --no-mouse --margin=3 --color="fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,info:-1,prompt:-1,pointer:-1,marker:32,spinner:-1,header:-1"'
     fi
 
 # iTerm2 shell integration.

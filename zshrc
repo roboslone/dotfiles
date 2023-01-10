@@ -468,8 +468,6 @@
     autoload -U promptinit
     autoload -U colors && colors
     promptinit
-    #PROMPT='%* %{$fg_no_bold[${primary_color}]%}|%{$reset_color%} '
-    #RPROMPT='$(vcs_info_wrapper) %{$fg_no_bold[${primary_color}]%}${_display_user}%{$reset_color%}${_display_host}%{$fg_no_bold[${primary_color}]%}%{$reset_color%}%{$fg[${primary_color}]%}%~%{$reset_color%}'
     eval "$(starship init zsh)"
 
 # Done loading.
@@ -478,3 +476,8 @@
 # Check System Integrity Protection check.
     [[ -n $PLATFORM_DARWIN ]] && check_sip
 
+
+# pnpm
+export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

@@ -1,9 +1,6 @@
 add_newline = false
 format = "[┌―](black) $time$hostname$cmd_duration$fill $directory$git_branch$git_status$git_state\n$character"
 
-[battery]
-disabled = false
-
 [fill]
 symbol = "―"
 style = "black"

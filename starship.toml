@@ -7,7 +7,7 @@ style = "dimmed black"
 
 [hostname]
 style = "yellow"
-format = "[━](dimmed black) [$hostname]($style) "
+format = "[─](dimmed black) [$hostname]($style) "
 
 [directory]
 truncation_length = 10

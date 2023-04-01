@@ -1,5 +1,5 @@
 add_newline = false
-format = "[─](dimmed black) $time$hostname$cmd_duration$fill $directory$git_branch$git_state[─](dimmed black)\n$character"
+format = "[──](dimmed black) $time$hostname$cmd_duration$fill $directory$git_branch$git_state[──](dimmed black)\n$character"
 
 [fill]
 symbol = "─"

@@ -6,7 +6,7 @@ symbol = "─"
 style = "dimmed black"
 
 [hostname]
-style = "yellow"
+style = "red"
 format = "[─](dimmed black) [$hostname]($style) "
 
 [directory]

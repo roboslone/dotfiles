@@ -15,6 +15,7 @@ style = "black"
 
 [git_branch]
 style = "bold cyan"
+symbol = "⌥ "
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [character]

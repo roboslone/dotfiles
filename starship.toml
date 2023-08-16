@@ -1,6 +1,6 @@
 add_newline = false
 format = "$time$character"
-right_format = "$hostname$cmd_duration$directory$git_branch$git_state"
+right_format = "$cmd_duration$hostname$directory$git_branch$git_state"
 
 [fill]
 symbol = "─"
@@ -8,7 +8,7 @@ style = "dimmed black"
 
 [hostname]
 style = "red"
-format = "[$hostname]($style) "
+format = "[$hostname:]($style)"
 
 [directory]
 truncation_length = 10

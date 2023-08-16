@@ -61,7 +61,7 @@ set expandtab
 set smarttab
 set ts=4
 set backspace=2 " make backspace work like most other apps
-set backspace=eol,start
+set backspace=indent,eol,start
 set nowrap
 set ls=2
 set enc=utf-8

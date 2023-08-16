@@ -435,6 +435,13 @@
         done
     }
 
+    function gbD() {
+        unset _branch
+        for _branch in $(git branch | grep -v '*' | fzf); do
+            git br -D $_branch
+        done
+    }
+
     function b64() {
         echo "$*" | base64 -d
     }

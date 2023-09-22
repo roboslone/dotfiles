@@ -16,8 +16,8 @@ typeset -g FAST_THEME_NAME="roboslone"
 : ${FAST_HIGHLIGHT_STYLES[robosloneglobbing]:=fg=blue}
 : ${FAST_HIGHLIGHT_STYLES[robosloneglobbing-ext]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[roboslonehistory-expansion]:=fg=blue}
-: ${FAST_HIGHLIGHT_STYLES[roboslonesingle-hyphen-option]:=fg=cyan}
-: ${FAST_HIGHLIGHT_STYLES[roboslonedouble-hyphen-option]:=fg=cyan}
+: ${FAST_HIGHLIGHT_STYLES[roboslonesingle-hyphen-option]:=fg=blue}
+: ${FAST_HIGHLIGHT_STYLES[roboslonedouble-hyphen-option]:=fg=blue}
 : ${FAST_HIGHLIGHT_STYLES[robosloneback-quoted-argument]:=none}
 : ${FAST_HIGHLIGHT_STYLES[roboslonesingle-quoted-argument]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[roboslonedouble-quoted-argument]:=fg=green}

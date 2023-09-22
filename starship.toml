@@ -37,7 +37,7 @@ format = "[$time]($style) "
 min_time = 100
 show_milliseconds = true
 format = "[$duration]($style) "
-style = "cyan"
+style = "yellow"
 
 [git_state]
 style = "bold red"

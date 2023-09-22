@@ -488,3 +488,10 @@
 export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# bun completions
+[ -s "/Users/akhristyukhin/.bun/_bun" ] && source "/Users/akhristyukhin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -7,7 +7,7 @@ symbol = "─"
 style = "dimmed black"
 
 [hostname]
-style = "red"
+style = "blue"
 format = "[$hostname]($style) "
 
 [directory]
@@ -15,7 +15,7 @@ truncation_length = 10
 style = "black"
 
 [git_branch]
-style = "bold cyan"
+style = "blue"
 symbol = "⌥ "
 format = "[$symbol$branch(:$remote_branch)]($style) "
 

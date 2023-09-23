@@ -98,7 +98,7 @@
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
         [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
-        alias ll='ls -la'
+        alias ll='ls -lah'
         alias l1='ls -1'
         alias grep='grep --color=auto'
         alias Lf='less +F'
@@ -485,13 +485,13 @@
 
 
 # pnpm
-export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+    export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 # bun completions
 [ -s "/Users/akhristyukhin/.bun/_bun" ] && source "/Users/akhristyukhin/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"

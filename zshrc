@@ -108,15 +108,21 @@
         alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias gs='git status'
+        alias пы=gs
+        alias пз=gp
+        alias 2A='git push -u'
+        alias 2B='git pull'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
         alias GC='git reset --hard HEAD && git clean -qfd'
 
     ## macOS only.
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade; brew doctor'
+        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade --greedy; brew doctor'
 
     ## Linux only.
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
+
+        alias игз=bup
 
 # Editor.
     export EDITOR='vim'
@@ -406,9 +412,9 @@
     }
 
     function gp() {
-        git pull && git log -n 1 --format="%ai %s"
+        git pull && git log --shortstat -n 1 --format="%ai %s"
         if [[ -z "$*" ]]; then; else
-            git checkout "$*" && git pull && git log -n 1 --format="%ai %s"
+            git checkout "$*" && git pull && git log --shortstat -n 1 --format="%ai %s"
         fi
     }
 

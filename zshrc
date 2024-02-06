@@ -93,7 +93,7 @@
         alias -g Y='ya make -q &&'
         alias -g DBG='LOGGING_LEVEL=DEBUG'
         alias -g S='|subl'
-	alias -g J='|jq .'
+        alias -g J='|jq .'
 
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
@@ -149,15 +149,15 @@
     fi
 
 # Syntax highlighting.
-    export FAST_WORK_DIR='~/Dotfiles/fast-syntax-highlighting-themes'
+    export FAST_WORK_DIR='~/.config/dotfiles/fast-syntax-highlighting-themes'
 
-    if [[ -e ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
-        source ~/Dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    if [[ -e ~/.config/dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+        source ~/.config/dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     fi
 
 # Suggest.
-    if [[ -e ~/Dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
-        source ~/Dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    if [[ -e ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+        source ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     fi
 
 # Working directory.

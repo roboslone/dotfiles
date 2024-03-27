@@ -117,7 +117,7 @@
 
     ## macOS only.
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-        [[ -n $PLATFORM_DARWIN ]] && alias bup='brew update && brew upgrade --greedy; brew doctor'
+        [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor'
 
     ## Linux only.
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
@@ -428,6 +428,16 @@
 
     function gfm() {
         git fetch -u origin master:master
+    }
+
+    function gmm() {
+        gfm
+        git merge master "$@"
+    }
+
+    function grm() {
+        gfm
+        git rebase master "$@"
     }
 
     function gco() {

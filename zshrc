@@ -98,13 +98,17 @@
     ## Common.
         [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
         [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
+        alias ...='cd ../..'
+        alias ....='cd ../../..'
+        alias .....='cd ../../../..'
         alias ll='ls -lah'
         alias l1='ls -1'
+        alias cat='bat'
         alias grep='grep --color=auto'
         alias Lf='less +F'
         alias GR='grep -RIi'
         alias ssh='ssh -o "logLevel=QUIET"'
-        alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
+        alias ipy="python3 -c 'import IPython; IPython.terminal.ipapp.launch_new_instance(pprint=True)'"
         alias repo_up='svn info &> /dev/null && svn up -q; git pull --quiet && git submodule update --init --recursive --quiet'
         alias repo_up_with_log='svn info &> /dev/null && (svn up && svn log -l 5) || git pull'
         alias gs='git status'
@@ -127,6 +131,9 @@
 # Editor.
     export EDITOR='vim'
     [[ -n $PLATFORM_DARWIN ]] && export HOMEBREW_EDITOR='vim'
+
+# Bat.
+    export BAT_THEME='base16'
 
 # History.
     SAVEHIST=100000
@@ -177,7 +184,6 @@
     WORDCHARS="@"
 
 # FZF.
-    export FZF_DEFAULT_OPTS='--pointer="🡢" --height 100% -i --multi --exact --prompt="" --no-mouse --margin=3 --color="fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,info:-1,prompt:-1,pointer:-1,marker:32,spinner:-1,header:-1"'
     if [[ -e "${HOME}/.fzf.zsh" ]]; then
         source "${HOME}/.fzf.zsh"
     fi

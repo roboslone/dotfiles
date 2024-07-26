@@ -437,13 +437,15 @@
     }
 
     function gmm() {
-        gfm
-        git merge master "$@"
+        gfm && git merge master "$@"
+    }
+
+    function gmmp() {
+        gmm &&  git push -u
     }
 
     function grm() {
-        gfm
-        git rebase master "$@"
+        gfm && git rebase master "$@"
     }
 
     function gco() {

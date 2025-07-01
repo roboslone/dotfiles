@@ -78,7 +78,7 @@
     }
 
 # Path.
-    export PATH="$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
+    export PATH="/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
 
 # Aliases.
     ## Global.
@@ -118,10 +118,12 @@
         alias 2B='git pull'
         alias fav='echo $(pwd) >> ~/.favorite_dirs'
         alias GC='git reset --hard HEAD && git clean -qfd'
+        alias yt='yt-dlp'
 
     ## macOS only.
         [[ -n $PLATFORM_DARWIN ]] && alias dnsflush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
         [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor'
+        [[ -n $PLATFORM_DARWIN ]] && alias C='/Users/roboslone/Documents/battery-status/battery-status'
 
     ## Linux only.
         [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
@@ -332,13 +334,6 @@
     fi
 
 # Functions.
-    function disable_airdrop() {
-        ifconfig awdl0 &> /dev/null || (print 'AirDrop interface (awdl0) does not exist' && return 1)
-        ifconfig awdl0 | grep status | grep inactive &> /dev/null && return 0
-        sudo ifconfig awdl0 down && print 'AirDrop interface disabled' && return 0
-        print 'failed to disable AirDrop interface' && return 2
-    }
-
     function check_sip() {
         csrutil status | grep 'enabled' > /dev/null || print "${_red}System Integrity Protection is disabled!${_0}"
     }
@@ -470,6 +465,10 @@
         echo "$*" | base64 -d
     }
 
+    function scrape() {
+        yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 "$*"
+    }
+
 # Shortcut bindings.
     zle -N fcd
     bindkey ^h fcd
@@ -522,3 +521,9 @@
 
 # Zoxide.
     eval "$(zoxide init --cmd cd zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/roboslone/.lmstudio/bin"
+
+# Created by `pipx` on 2025-05-03 06:23:27
+export PATH="$PATH:/Users/roboslone/.local/bin"

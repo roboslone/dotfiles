@@ -522,8 +522,3 @@
 # Zoxide.
     eval "$(zoxide init --cmd cd zsh)"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/roboslone/.lmstudio/bin"
-
-# Created by `pipx` on 2025-05-03 06:23:27
-export PATH="$PATH:/Users/roboslone/.local/bin"

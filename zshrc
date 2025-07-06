@@ -103,7 +103,6 @@
         alias .....='cd ../../../..'
         alias ll='ls -lah'
         alias l1='ls -1'
-        alias cat='bat'
         alias grep='grep --color=auto'
         alias Lf='less +F'
         alias GR='grep -RIi'

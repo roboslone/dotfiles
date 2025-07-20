@@ -147,6 +147,11 @@
         source ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     fi
 
+    # iTerm2
+    if [[ -e ~/.iterm2_shell_integration.zsh ]]; then
+        source ~/.iterm2_shell_integration.zsh
+    fi
+
 # prompt
     eval "$(starship init zsh)"
 

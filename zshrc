@@ -1,4 +1,4 @@
-# formatting.
+# formatting
     ## common
         bold='\033[1m'      # bold
         bou='\033[5m'       # bounce
@@ -26,7 +26,7 @@
         _cyan='\033[46m'
         _grey='\033[47m'
 
-# Loading...
+# loading
     echo -e "${black}Loading...${_0}"
 
 # platform

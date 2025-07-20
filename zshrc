@@ -127,13 +127,13 @@
     }
 
 # includes
-    if [[ -e "~/.zshrc.ext" ]]; then
-        source "~/.zshrc.ext"
+    if [[ -e ~/.zshrc.ext ]]; then
+        source ~/.zshrc.ext
     fi
 
     # fzf
-    if [[ -e "~/.fzf.zsh" ]]; then
-        source "~/.fzf.zsh"
+    if [[ -e ~/.fzf.zsh ]]; then
+        source ~/.fzf.zsh
     fi
 
     # syntax highlighting

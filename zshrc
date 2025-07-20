@@ -69,7 +69,7 @@
     export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
 
 # path
-    export PATH="$PNPM_HOME:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:/db/bin:$PATH"
+    export PATH="$PNPM_HOME:/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
 # aliases
     alias -g V='|vim -'

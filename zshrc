@@ -38,6 +38,7 @@
     alias -g W='|wc -l'
     alias -g J='|jq .'
     
+    alias ls='ls --color=auto -F --group-directories-first'
     alias ll='ls -lah'
     alias l1='ls -1'
     alias grep='grep --color=auto'

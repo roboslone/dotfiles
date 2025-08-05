@@ -74,7 +74,14 @@
     }
 
 # path
-    export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="/usr/local/sbin:$PATH"
+    export PATH="$HOME/.bin:$PATH"
+    export PATH="$HOME/.fzf/bin:$PATH"
+    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/sbin:$PATH"
 
 # includes
     # local

@@ -8,6 +8,7 @@
     zinit light zsh-users/zsh-autosuggestions
     zinit light zsh-users/zsh-syntax-highlighting
     zinit light romkatv/powerlevel10k
+    zinit light Aloxaf/fzf-tab
 
 # prompt
     source ~/.config/dotfiles/zsh/p10k.zsh
@@ -22,7 +23,7 @@
     autoload -U compinit
     compinit
     setopt completealiases
-    zstyle ':completion:*' menu select
+    zstyle ':completion:*' menu no
     zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
     unsetopt nomatch

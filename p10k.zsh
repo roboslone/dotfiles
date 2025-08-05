@@ -49,7 +49,7 @@
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     time                      # current time
-    # context                 # user@host
+    context                   # user@host
     prompt_char               # prompt symbol
   )
 

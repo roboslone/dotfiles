@@ -74,7 +74,7 @@
     }
 
 # path
-    export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH"
+    export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
 # includes
     # local

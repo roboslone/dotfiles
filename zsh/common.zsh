@@ -19,7 +19,7 @@
     [[ $(uname) == 'Darwin' ]] && export PLATFORM_DARWIN=1 && export PLATFORM_LINUX=
     [[ $(uname) == 'Linux' ]] && export PLATFORM_LINUX=1 && export PLATFORM_DARWIN=
 
-# autocomplete menu
+# autocompletion
     autoload -U compinit
     compinit
     setopt completealiases
@@ -27,6 +27,8 @@
     zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
     unsetopt nomatch
+
+    zinit cdreplay -q # compinit performance optimization
 
 # shell history
     HISTSIZE=100000

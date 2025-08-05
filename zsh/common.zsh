@@ -26,15 +26,21 @@
     unsetopt nomatch
 
 # shell history
-    SAVEHIST=100000
     HISTSIZE=100000
+    SAVEHIST=$HISTSIZE
     HISTFILE=~/.zsh_history
-    setopt extended_history
-    setopt inc_append_history
-    setopt share_history
-    setopt hist_ignore_all_dups
+    HISTDUP=erase
+    setopt appendhistory
+    setopt sharehistory
     setopt hist_ignore_space
-    setopt hist_reduce_blanks
+    setopt hist_ignore_all_dups
+    setopt hist_save_no_dups
+    setopt hist_ignore_dups
+    setopt hist_find_no_dups
+
+    # limits history search to current command
+    bindkey "^[[A" history-search-backward
+    bindkey "^[[B" history-search-forward
 
 # shell options
     setopt autocd

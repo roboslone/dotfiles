@@ -1,3 +1,17 @@
+# zinit
+    ZINIT_HOME="${HOME}/.config/zinit"
+    [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+    [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+    source "${ZINIT_HOME}/zinit.zsh"
+
+    zinit light zsh-users/zsh-completions
+    zinit light zsh-users/zsh-autosuggestions
+    zinit light zsh-users/zsh-syntax-highlighting
+    zinit light romkatv/powerlevel10k
+
+# prompt
+    source ~/.config/dotfiles/zsh/p10k.zsh
+
 # platform
     unset PLATFORM_LINUX
     unset PLATFORM_DARWIN
@@ -51,7 +65,7 @@
     alias игз=bup
 
     [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
-    [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor'
+    [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor; zinit self-update && zinit update --parallel'
 
 # constants
     WORDCHARS="@"
@@ -93,36 +107,14 @@
         source ~/.zshrc.local
     fi
 
-    # additional completions
-    if [[ -e /usr/local/share/zsh-completions ]]; then
-        fpath=(/usr/local/share/zsh-completions $fpath)
-    fi
-
     # fzf
     if [[ -e ~/.config/dotfiles/fzf/fzf.zsh ]]; then
         source ~/.config/dotfiles/fzf/fzf.zsh
     fi
 
-    # syntax highlighting
-    if [[ -e ~/.config/dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
-        export FAST_WORK_DIR='~/.config/dotfiles/zsh/fast-syntax-highlighting-themes'
-        source ~/.config/dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-    fi
-
-    # suggest
-    if [[ -e ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
-        source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-    fi
-
     # iTerm2
     if [[ -e ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh ]]; then
         source ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh
-    fi
-
-    # prompt
-    if [[ -e ~/.config/dotfiles/zsh/powerlevel10k ]]; then
-        source ~/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme
-        source ~/.config/dotfiles/zsh/p10k.zsh
     fi
 
     # zoxide

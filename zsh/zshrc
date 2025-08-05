@@ -1,0 +1,5 @@
+source ~/.config/dotfiles/zsh/common.zsh
+
+if [[ -e ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi

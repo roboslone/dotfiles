@@ -96,30 +96,30 @@
     fi
 
     # fzf
-    if [[ -e ~/.config/dotfiles/fzf.zsh ]]; then
-        source ~/.config/dotfiles/fzf.zsh
+    if [[ -e ~/.config/dotfiles/fzf/fzf.zsh ]]; then
+        source ~/.config/dotfiles/fzf/fzf.zsh
     fi
 
     # syntax highlighting
-    if [[ -e ~/.config/dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
-        export FAST_WORK_DIR='~/.config/dotfiles/fast-syntax-highlighting-themes'
-        source ~/.config/dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    if [[ -e ~/.config/dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+        export FAST_WORK_DIR='~/.config/dotfiles/zsh/fast-syntax-highlighting-themes'
+        source ~/.config/dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     fi
 
     # suggest
-    if [[ -e ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
-        source ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    if [[ -e ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+        source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     fi
 
     # iTerm2
-    if [[ -e ~/.config/dotfiles/.iterm2_shell_integration.zsh ]]; then
-        source ~/.config/dotfiles/.iterm2_shell_integration.zsh
+    if [[ -e ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh ]]; then
+        source ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh
     fi
 
     # prompt
-    if [[ -e ~/.config/dotfiles/powerlevel10k ]]; then
-        source ~/.config/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
-        source ~/.config/dotfiles/p10k.zsh
+    if [[ -e ~/.config/dotfiles/zsh/powerlevel10k ]]; then
+        source ~/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme
+        source ~/.config/dotfiles/zsh/p10k.zsh
     fi
 
     # zoxide

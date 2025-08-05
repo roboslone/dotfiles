@@ -1,3 +1,2 @@
-*.sqlite
-**/dhist
+.DS_Store
 vim/bundle

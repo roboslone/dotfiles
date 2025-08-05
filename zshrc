@@ -1,34 +1,3 @@
-# formatting
-    ## common
-        bold='\033[1m'      # bold
-        bou='\033[5m'       # bounce
-        transp='\033[2m'    # transparent
-        und='\033[4m'       # underlined
-        inv='\033[7m'       # inverted (background color <> font color)
-        normal='\033[m'     # format reset
-        _0='\033[m'         # same as ${normal}
-    ## foreground
-        black='\033[30m'
-        red='\033[31m'
-        green='\033[32m'
-        yellow='\033[33m'
-        blue='\033[34m'
-        violet='\033[35m'
-        cyan='\033[36m'
-        grey='\033[37m'
-    ## background
-        _black='\033[40m'
-        _red='\033[41m'
-        _green='\033[42m'
-        _yellow='\033[43m'
-        _blue='\033[44m'
-        _violet='\033[45m'
-        _cyan='\033[46m'
-        _grey='\033[47m'
-
-# loading
-    echo -e "${black}Loading...${_0}"
-
 # platform
     unset PLATFORM_LINUX
     unset PLATFORM_DARWIN
@@ -57,35 +26,17 @@
     setopt autocd
     setopt interactive_comments
 
-# additional completions
-    if [[ -e /usr/local/share/zsh-completions ]]; then
-        fpath=(/usr/local/share/zsh-completions $fpath)
-    fi
-
 # env
-    export EDITOR='vim'
-    export HOMEBREW_EDITOR='vim'
     export LC_ALL='en_US.UTF-8'
-    export PNPM_HOME="/Users/akhristyukhin/Library/pnpm"
-
-# path
-    export PATH="$PNPM_HOME:/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
 # aliases
     alias -g V='|vim -'
     alias -g G='|grep -i'
     alias -g Gv='|grep -iv'
-    alias -g L='|less'
     alias -g T='|tail'
     alias -g H='|head'
     alias -g W='|wc -l'
-    alias -g S='|subl'
     alias -g J='|jq .'
-
-    [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
-    [[ -n $PLATFORM_LINUX ]] && alias ls='ls --color=auto -F --group-directories-first'
-    [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor'
-    [[ -n $PLATFORM_LINUX ]] && alias bup='sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install linux-generic linux-headers-generic linux-image-generic && sudo apt-get -y autoclean && sudo apt-get -y autoremove'
     
     alias ll='ls -lah'
     alias l1='ls -1'
@@ -122,18 +73,19 @@
         git checkout $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
     }
 
-    function scrape() {
-        yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 "$*"
-    }
-
 # includes
-    if [[ -e ~/.zshrc.ext ]]; then
-        source ~/.zshrc.ext
+    if [[ -e ~/.zshrc.local ]]; then
+        source ~/.zshrc.local
     fi
 
     # fzf
     if [[ -e ~/.fzf.zsh ]]; then
         source ~/.fzf.zsh
+    fi
+
+    # additional completions
+    if [[ -e /usr/local/share/zsh-completions ]]; then
+        fpath=(/usr/local/share/zsh-completions $fpath)
     fi
 
     # syntax highlighting
@@ -148,15 +100,15 @@
     fi
 
     # iTerm2
-    if [[ -e ~/.iterm2_shell_integration.zsh ]]; then
-        source ~/.iterm2_shell_integration.zsh
+    if [[ -e ~/.config/dotfiles/.iterm2_shell_integration.zsh ]]; then
+        source ~/.config/dotfiles/.iterm2_shell_integration.zsh
     fi
 
-# prompt
-    eval "$(starship init zsh)"
+    # prompt
+    if [[ -e ~/.config/dotfiles/powerlevel10k ]]; then
+        source ~/.config/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
+        source ~/.config/dotfiles/p10k.zsh
+    fi
 
-# zoxide
+    # zoxide
     eval "$(zoxide init --cmd cd zsh)"
-
-# loaded
-    clear

@@ -50,6 +50,9 @@
     alias пз=gp
     alias игз=bup
 
+    [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
+    [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor'
+
 # constants
     WORDCHARS="@"
 

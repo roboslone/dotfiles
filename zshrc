@@ -73,19 +73,23 @@
         git checkout $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
     }
 
+# path
+    export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$HOME/.cargo/bin:$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH"
+
 # includes
+    # local
     if [[ -e ~/.zshrc.local ]]; then
         source ~/.zshrc.local
-    fi
-
-    # fzf
-    if [[ -e ~/.fzf.zsh ]]; then
-        source ~/.fzf.zsh
     fi
 
     # additional completions
     if [[ -e /usr/local/share/zsh-completions ]]; then
         fpath=(/usr/local/share/zsh-completions $fpath)
+    fi
+
+    # fzf
+    if [[ -e ~/.config/dotfiles/fzf.zsh ]]; then
+        source ~/.config/dotfiles/fzf.zsh
     fi
 
     # syntax highlighting

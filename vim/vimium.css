@@ -26,57 +26,97 @@ div > .vimiumHintMarker span {
     --vimium-background-color: #0a0a0a; /* stone-900 */
     --vimium-foreground-color: #171717; /* stone-800 */
     --vimium-url-color: #0369a1; /* sky-800 */
-    --vimium-url-match-color: #0284c7; /* sky-600 */
+    --vimium-url-match-color: #0ea5e9; /* sky-500 */
     --vimium-title-color: #a3a3a3; /* neutral-400 */
     --vimium-title-match-color: #d4d4d4; /* neutral-300 */
     --vimium-source-foreground-color: #78716c; /* stone-500 */
-    --vimium-url-font: "Iosevka Term Light", monospace;
+    --vimium-font: "Iosevka Term Light", monospace;
   }
 
-  #vomnibar-search-area > input {
-    background: transparent;
+  #vomnibar-search-area {
     border: none;
+
+    input {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      font-family: var(--vimium-font);
+    }
+  }
+
+  #vomnibar {
+    border-radius: 2px;
     box-shadow: none;
-  }
 
-  #vomnibar li .source {
-    color: var(--vimium-source-foreground-color);
-    font-family: var(--vimium-url-font);
-  }
+    input::selection {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
-  #vomnibar li {
-    border-bottom: 1px solid var(--vimium-foreground-color);
-  }
+    li {
+      border-top: 1px solid var(--vimium-foreground-color);
+      border-bottom: none;
+      padding: 8px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
 
-  #vomnibar input::selection {
-    background: rgba(255, 255, 255, 0.2);
-  }
+      &.selected {
+        background: var(--vimium-foreground-color);
+      }
 
-  #vomnibar li .url {
-    color: var(--vimium-url-color);
-    font-family: var(--vimium-url-font);
-  }
+      .match {
+        color: var(--vimium-url-match-color);
+      }
 
-  #vomnibar li em,
-  #vomnibar li .title {
-    color: var(--vimium-title-color);
-    font-family: var(--vimium-url-font);
-  }
+      .top-half {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+      }
 
-  #vomnibar li em .match,
-  #vomnibar li .title .match {
-    color: var(--vimium-title-match-color);
-  }
+      .bottom-half {
+        margin: 0;
+        padding: 0;
+      }
 
-  #vomnibar li {
-    padding: 10px 0;
-  }
+      .no-insert-text {
+        display: none;
+      }
 
-  #vomnibar li .match {
-    color: var(--vimium-url-match-color);
-  }
+      .source {
+        color: var(--vimium-source-foreground-color);
+        font-family: var(--vimium-font);
+        font-size: 10px;
+        margin: 0;
+      }
 
-  #vomnibar li.selected {
-    background: var(--vimium-foreground-color);
+      .url {
+        color: var(--vimium-url-color);
+        font-family: var(--vimium-font);
+      }
+
+      .title {
+        &:empty {
+          &::before {
+            content: "[Domain]";
+          }
+        }
+      }
+
+      em,
+      .title {
+        margin: 0;
+        color: var(--vimium-title-color);
+        font-family: var(--vimium-font);
+
+        .match {
+          color: var(--vimium-title-match-color);
+        }
+      }
+    }
   }
 }

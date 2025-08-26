@@ -1,0 +1,82 @@
+div > .vimiumHintMarker {
+  /* linkhint boxes */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #fff785),
+    color-stop(100%, #ffc542)
+  );
+  border: 1px solid #e3be23;
+}
+
+div > .vimiumHintMarker span {
+  /* linkhint text */
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#hud-container {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vimium-background-color: #0a0a0a; /* stone-900 */
+    --vimium-foreground-color: #171717; /* stone-800 */
+    --vimium-url-color: #0369a1; /* sky-800 */
+    --vimium-url-match-color: #0284c7; /* sky-600 */
+    --vimium-title-color: #a3a3a3; /* neutral-400 */
+    --vimium-title-match-color: #d4d4d4; /* neutral-300 */
+    --vimium-source-foreground-color: #78716c; /* stone-500 */
+    --vimium-url-font: "Iosevka Term Light", monospace;
+  }
+
+  #vomnibar-search-area > input {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  #vomnibar li .source {
+    color: var(--vimium-source-foreground-color);
+    font-family: var(--vimium-url-font);
+  }
+
+  #vomnibar li {
+    border-bottom: 1px solid var(--vimium-foreground-color);
+  }
+
+  #vomnibar input::selection {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  #vomnibar li .url {
+    color: var(--vimium-url-color);
+    font-family: var(--vimium-url-font);
+  }
+
+  #vomnibar li em,
+  #vomnibar li .title {
+    color: var(--vimium-title-color);
+    font-family: var(--vimium-url-font);
+  }
+
+  #vomnibar li em .match,
+  #vomnibar li .title .match {
+    color: var(--vimium-title-match-color);
+  }
+
+  #vomnibar li {
+    padding: 10px 0;
+  }
+
+  #vomnibar li .match {
+    color: var(--vimium-url-match-color);
+  }
+
+  #vomnibar li.selected {
+    background: var(--vimium-foreground-color);
+  }
+}

@@ -127,6 +127,3 @@
     if [[ -e ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh ]]; then
         source ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh
     fi
-
-    # zoxide
-    eval "$(zoxide init --cmd cd zsh)"

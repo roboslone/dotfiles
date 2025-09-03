@@ -6,14 +6,17 @@
   :root {
     --vimium-background-color: #0a0a0a; /* stone-900 */
     --vimium-foreground-color: #171717; /* stone-800 */
-    --vimium-url-color: #0369a1; /* sky-800 */
-    --vimium-url-match-color: #0ea5e9; /* sky-500 */
-    --vimium-title-color: #a3a3a3; /* neutral-400 */
-    --vimium-title-match-color: #d4d4d4; /* neutral-300 */
-    --vimium-source-foreground-color: #78716c; /* stone-500 */
-    --vimium-marker-gradient-start: #fff785;
-    --vimium-marker-gradient-stop: #ffc542;
-    --vimium-marker-border-color: #e3be23;
+
+    --border-color: #404040; /* stone-700 */
+    --text-color: #d4d4d4; /* stone-300 */
+    --url-color: #0369a1; /* sky-800 */
+    --url-match-color: #0ea5e9; /* sky-500 */
+    --title-color: #a3a3a3; /* neutral-400 */
+    --title-match-color: #d4d4d4; /* neutral-300 */
+    --source-foreground-color: #78716c; /* stone-500 */
+    --marker-gradient-start: #fff785;
+    --marker-gradient-stop: #ffc542;
+    --marker-border-color: #e3be23;
   }
 }
 
@@ -22,10 +25,10 @@ div > .vimiumHintMarker {
     linear,
     left top,
     left bottom,
-    color-stop(0%, var(--vimium-marker-gradient-start)),
-    color-stop(100%, var(--vimium-marker-gradient-stop))
+    color-stop(0%, var(--marker-gradient-start)),
+    color-stop(100%, var(--marker-gradient-stop))
   );
-  border: 1px solid var(--vimium-marker-border-color);
+  border: 1px solid var(--marker-border-color);
 }
 
 div > .vimiumHintMarker span {
@@ -36,7 +39,90 @@ div > .vimiumHintMarker span {
 }
 
 #hud-container {
-  display: none;
+  width: fit-content;
+  bottom: 28px;
+  left: unset;
+  right: 0;
+  box-shadow: none;
+  background: var(--vimium-background-color);
+  border: none;
+  font-family: var(--vimium-font);
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+#search-area {
+  padding: 0;
+}
+
+#hud {
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+
+  &[data-text="Open link in current tab."] {
+    display: none;
+  }
+
+  &[data-text="Open link in new tab."] {
+    display: none;
+  }
+
+  &[data-text="Insert mode"] {
+    font-size: 0;
+
+    &:after {
+      font-size: 14px;
+      font-style: italic;
+      content: "I";
+    }
+  }
+
+  &[data-text="Visual mode"] {
+    font-size: 0;
+
+    &:after {
+      font-size: 14px;
+      font-style: italic;
+      content: "V";
+    }
+  }
+
+  &[data-text="Visual mode (line)"] {
+    font-size: 0;
+
+    &:after {
+      font-size: 14px;
+      font-style: italic;
+      content: "Vl";
+    }
+  }
+}
+
+.hud-find {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+#hud-find-input {
+  color: var(--text-color);
+
+  &::before {
+    opacity: 0.5;
+  }
+}
+
+#hud-match-count {
+  float: unset !important;
+  color: var(--text-color) !important;
+  opacity: 0.5;
+  text-transform: lowercase;
+
+  &:empty {
+    display: none;
+  }
 }
 
 #vomnibar-search-area {
@@ -51,7 +137,8 @@ div > .vimiumHintMarker span {
 }
 
 #vomnibar {
-  border-radius: 2px;
+  border: 1px solid var(--vimium-foreground-color);
+  border-radius: 3px;
   box-shadow: none;
 
   input::selection {
@@ -71,7 +158,7 @@ div > .vimiumHintMarker span {
     }
 
     .match {
-      color: var(--vimium-url-match-color);
+      color: var(--url-match-color);
     }
 
     .top-half {
@@ -94,14 +181,14 @@ div > .vimiumHintMarker span {
     }
 
     .source {
-      color: var(--vimium-source-foreground-color);
+      color: var(--source-foreground-color);
       font-family: var(--vimium-font);
       font-size: 10px;
       margin: 0;
     }
 
     .url {
-      color: var(--vimium-url-color);
+      color: var(--url-color);
       font-family: var(--vimium-font);
     }
 
@@ -116,12 +203,20 @@ div > .vimiumHintMarker span {
     em,
     .title {
       margin: 0;
-      color: var(--vimium-title-color);
+      color: var(--title-color);
       font-family: var(--vimium-font);
 
       .match {
-        color: var(--vimium-title-match-color);
+        color: var(--title-match-color);
       }
     }
   }
+}
+
+body:has(#hud-container) {
+  margin: 0;
+}
+
+iframe.vimium-hud-frame {
+  background: green;
 }

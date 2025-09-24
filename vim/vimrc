@@ -8,7 +8,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'mitsuhiko/vim-jinja'
 call vundle#end()
 filetype plugin indent on
 

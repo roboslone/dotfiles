@@ -2,7 +2,7 @@ export FZF_DEFAULT_OPTS='
   --color=bg+:#090909
   --color=bg:-1
   --color=border:#202020
-  --color=fg+:#D0C2A2
+  --color=fg+:#E5E9E9
   --color=fg:#909090
   --color=gutter:-1
   --color=header:#87afaf
@@ -18,10 +18,11 @@ export FZF_DEFAULT_OPTS='
   --color=scrollbar:#D0C2A2
   --color=separator:#202020
   --color=spinner:#D0C2A2
+  --gutter=" "
   --info="right"
   --layout="reverse"
   --marker="+"
-  --pointer="🡢"
+  --pointer=" "
   --preview-window="border-sharp"
   --prompt=""
   --scrollbar="│"
@@ -29,16 +30,5 @@ export FZF_DEFAULT_OPTS='
   --border="sharp"
   --height="-1"
 '
-
-# https://youtu.be/mmqDYw9C30I?si=tafLCTeElwqNQFGH&t=750
-_fzf_comprun() {
-	local command=$1
-	shift
-
-	case "$command" in
-		vim|subl|code|goland) 	fzf --preview="bat -n --color=always --line-range :64 {}" ;;
-		*) 						fzf ;;
-	esac
-}
 
 eval "$(fzf --zsh)"

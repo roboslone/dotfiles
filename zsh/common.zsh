@@ -107,6 +107,7 @@
     export PATH="/usr/local/bin:$PATH"
     export PATH="/usr/local/sbin:$PATH"
     export PATH="$HOME/.bin:$PATH"
+    export PATH="$HOME/go/bin:$PATH"
     export PATH="$HOME/.fzf/bin:$PATH"
     export PATH="$HOME/.cargo/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"

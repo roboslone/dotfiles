@@ -76,7 +76,6 @@
     alias игз=bup
 
     [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
-    [[ -n $PLATFORM_DARWIN ]] && alias bup='mas outdated && mas upgrade; brew update && brew upgrade --greedy; brew doctor; zinit self-update && zinit update --parallel'
 
 # constants
     WORDCHARS="@"
@@ -91,6 +90,17 @@
     fi
 
 # functions
+    function bup() {
+        if [[ -n $PLATFORM_DARWIN ]]; then
+            mas outdated && mas upgrade
+        fi
+
+        brew update && brew upgrade --greedy
+        brew doctor
+
+        zinit self-update && zinit update --parallel --quiet --all
+    }
+
     function gp() {
         git pull && git log --shortstat -n 1 --format="%ai %s"
         if [[ -z "$*" ]]; then; else

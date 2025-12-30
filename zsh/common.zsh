@@ -102,9 +102,9 @@
     }
 
     function gp() {
-        git pull && git log --shortstat -n 1 --format="%ai %s"
+        git pull --recurse-submodules && git log --shortstat -n 1 --format="%ai %s"
         if [[ -z "$*" ]]; then; else
-            git checkout "$*" && git pull && git log --shortstat -n 1 --format="%ai %s"
+            git checkout "$*" && git pull --recurse-submodules && git log --shortstat -n 1 --format="%ai %s"
         fi
     }
 

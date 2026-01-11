@@ -77,6 +77,8 @@
 
     [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
 
+    alias psql='docker run --name psql --rm -it -v /Users/roboslone/Documents/videocentrix/web/gapi/src/config:/config postgres:17 psql'
+
 # constants
     WORDCHARS="@"
 
@@ -110,6 +112,11 @@
 
     function gco() {
         git checkout $(git branch | grep -v '*' | fzf | tr -d '[:space:]')
+    }
+
+    function gc() {
+        git commit -m "$@"
+        git push
     }
 
 # path

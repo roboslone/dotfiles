@@ -77,7 +77,9 @@
 
     [[ -n $PLATFORM_DARWIN ]] && alias ls='/opt/homebrew/bin/gls --color=auto -F --group-directories-first'
 
-    alias psql='docker run --name psql --rm -it -v /Users/roboslone/Documents/videocentrix/web/gapi/src/config:/config postgres:17 psql'
+    alias psql='docker run --rm -it -v /Users/roboslone/Documents/videocentrix/web/gapi/src/config:/config postgres:17 psql'
+    alias pg_dump='docker run --rm -it -v /Users/roboslone/Documents/videocentrix/web/gapi/src/config:/config postgres:17 pg_dump'
+    alias pg_restore='docker run --rm -it -v /Users/roboslone/Documents/videocentrix/web/gapi/src/config:/config postgres:17 pg_restore'
 
 # constants
     WORDCHARS="@"

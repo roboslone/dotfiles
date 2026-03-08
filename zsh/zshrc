@@ -3,8 +3,17 @@ source ~/.config/dotfiles/zsh/common.zsh
 if [[ -e ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
+
+if [[ -e ~/iCloud/.zshrc.cloud ]]; then
+    source ~/iCloud/.zshrc.cloud
+fi
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/roboslone/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/roboslone/.lmstudio/bin"
+# End of LM Studio CLI section

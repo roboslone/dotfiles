@@ -102,7 +102,7 @@
         brew update && brew upgrade --greedy
         brew doctor
 
-        zinit self-update && zinit update --parallel --quiet --all
+        zinit self-update && zinit update --parallel --quiet --all && zinit cclear
     }
 
     function gp() {

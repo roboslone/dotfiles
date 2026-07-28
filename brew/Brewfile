@@ -1,62 +1,125 @@
-tap "grafana/grafana"
-tap "jsattler/tap"
-tap "oven-sh/bun"
+tap "anomalyco/tap"
+tap "darrylmorley/whatcable"
+tap "grafana/grafana", trusted: true
+tap "oven-sh/bun", trusted: true
+# Simple, modern, secure file encryption
 brew "age"
+# Cross-platform make
 brew "cmake"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# More intuitive version of du in rust
 brew "dust"
+# Linux utility to get information on filesystems, like df but better
 brew "dysk"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# Distributed revision control system
 brew "git"
+# Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Fast linters runner for Go
 brew "golangci-lint"
+# Improved top (interactive process viewer)
 brew "htop"
+# Mac App Store command-line interface
 brew "mas"
+# Port scanning utility for large networks
 brew "nmap"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# CLI for Postgres with auto-completion and syntax highlighting
 brew "pgcli"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Safe, concurrent, practical language
 brew "rust"
+# Rust toolchain installer
 brew "rustup"
+# User interface to the TELNET protocol
 brew "telnet"
+# Lightweight BitTorrent client
 brew "transmission-cli", restart_service: :changed
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Internet file retriever
 brew "wget"
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# UNIX shell (command interpreter)
 brew "zsh"
+# Vendor-agnostic OpenTelemetry Collector distribution with programmable pipelines
 brew "grafana/grafana/alloy"
+# VPN client
 cask "amneziavpn"
+# Multi-track audio editor and recorder
 cask "audacity"
+# Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-cask "jsattler/tap/bettercapture"
+# Screen recorder
+cask "bettercapture"
+# Display management tool
 cask "betterdisplay"
+# Tool to customise input devices and automate computer systems
 cask "bettertouchtool"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Bitcoin thin client
 cask "electrum"
 cask "font-iosevka-term-nerd-font"
 cask "font-iosevka-term-slab-nerd-font"
+cask "font-libre-barcode-128-text"
+cask "font-libre-barcode-39-extended-text"
+# Free and open-source media player
 cask "iina"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Keyboard customiser
 cask "karabiner-elements"
+# UI replacement for volume, brightness and now playing controls
 cask "mediamate"
+# Add middle click for Trackpad and Magic Mouse
 cask "middle"
+# Utility to extend trackpad functionality
 cask "middleclick"
+# VPN client
 cask "mullvad-vpn"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Customise and maintain app icons
 cask "pictogram"
+# Control your tools with a few keystrokes
 cask "raycast"
+# Screenshot measurement and annotation tool
 cask "shottr"
+# Video game digital distribution service
 cask "steam"
+# Mesh VPN based on WireGuard
 cask "tailscale-app"
+# Messaging app with a focus on speed and security
 cask "telegram"
+# Menu bar manager
 cask "thaw"
+# Web browser focusing on security
 cask "tor-browser"
+# Open-source code editor
 cask "visual-studio-code"
+# Menu bar app for USB-C cable diagnostics
+cask "darrylmorley/whatcable/whatcable", trusted: true
+# Open-source version of the X.Org X Window System
 cask "xquartz"
 mas "Windows App", id: 1295203466

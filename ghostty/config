@@ -1,0 +1,29 @@
+font-family = IosevkaTermSlab NFM Light
+font-size = 18
+font-variation = wght=100
+font-style-bold = wght=100
+
+adjust-cell-height = 50%
+cursor-style-blink = true
+cursor-style = bar
+adjust-cursor-thickness = 3
+cursor-color = #F3C178
+
+background = #000
+palette = 0=#414141
+palette = 1=#FF8F40
+palette = 2=#AAD94C
+palette = 3=#D0C2A2
+palette = 4=#59C2FF
+palette = 5=#D2A6FF
+palette = 6=#48E5C2
+palette = 7=#BFBDB6
+
+keybind = global:cmd+backquote=toggle_quick_terminal
+macos-hidden = always
+
+quick-terminal-size = 100%
+quick-terminal-animation-duration = 0
+
+# https://github.com/sahaj-b/cursor-shaders
+custom-shader = shaders/ghostty/cursor_warp.glsl

@@ -19,6 +19,10 @@ palette = 5=#D2A6FF
 palette = 6=#48E5C2
 palette = 7=#BFBDB6
 
+background-image = ~/iCloud/Wallpapers/Black/andrew-kliatskyi-AlaGaRGKj8s-unsplash.jpg
+background-image-opacity = 0.2
+background-image-fit = cover
+
 keybind = global:cmd+backquote=toggle_quick_terminal
 macos-hidden = always
 

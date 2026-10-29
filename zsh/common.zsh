@@ -143,7 +143,7 @@
         source ~/.config/dotfiles/fzf/fzf.zsh
     fi
 
-    # iTerm2
-    if [[ -e ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh ]]; then
-        source ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh
-    fi
+    # # iTerm2
+    # if [[ -e ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh ]]; then
+    #     source ~/.config/dotfiles/zsh/.iterm2_shell_integration.zsh
+    # fi

@@ -1,6 +1,6 @@
-tap "anomalyco/tap"
 tap "darrylmorley/whatcable"
 tap "grafana/grafana", trusted: true
+tap "omlahore/tap"
 tap "oven-sh/bun", trusted: true
 # Simple, modern, secure file encryption
 brew "age"
@@ -24,8 +24,6 @@ brew "fzf"
 brew "git"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Fast linters runner for Go
-brew "golangci-lint"
 # Improved top (interactive process viewer)
 brew "htop"
 # Mac App Store command-line interface
@@ -56,18 +54,16 @@ brew "tree"
 brew "vim"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
-# Internet file retriever
-brew "wget"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Vendor-agnostic OpenTelemetry Collector distribution with programmable pipelines
 brew "grafana/grafana/alloy"
+# Debloat macOS: turn off Apple Intelligence, analytics, ads and pop-ups
+brew "omlahore/tap/removemacai", trusted: true
 # VPN client
 cask "amneziavpn"
-# Multi-track audio editor and recorder
-cask "audacity"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Screen recorder
@@ -84,6 +80,8 @@ cask "font-iosevka-term-nerd-font"
 cask "font-iosevka-term-slab-nerd-font"
 cask "font-libre-barcode-128-text"
 cask "font-libre-barcode-39-extended-text"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Free and open-source media player
 cask "iina"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -94,12 +92,10 @@ cask "karabiner-elements"
 cask "mediamate"
 # Add middle click for Trackpad and Magic Mouse
 cask "middle"
-# Utility to extend trackpad functionality
-cask "middleclick"
+# Smooths scrolling and set mouse scroll directions independently
+cask "mos"
 # VPN client
 cask "mullvad-vpn"
-# Knowledge base that works on top of a local folder of plain text Markdown files
-cask "obsidian"
 # Customise and maintain app icons
 cask "pictogram"
 # Control your tools with a few keystrokes
@@ -112,14 +108,9 @@ cask "steam"
 cask "tailscale-app"
 # Messaging app with a focus on speed and security
 cask "telegram"
-# Menu bar manager
-cask "thaw"
 # Web browser focusing on security
 cask "tor-browser"
 # Open-source code editor
 cask "visual-studio-code"
 # Menu bar app for USB-C cable diagnostics
 cask "darrylmorley/whatcable/whatcable", trusted: true
-# Open-source version of the X.Org X Window System
-cask "xquartz"
-mas "Windows App", id: 1295203466

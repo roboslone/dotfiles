@@ -30,10 +30,6 @@ brew "htop"
 brew "mas"
 # Port scanning utility for large networks
 brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
-# CLI for Postgres with auto-completion and syntax highlighting
-brew "pgcli"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Fast, disk space efficient package manager
